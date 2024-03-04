@@ -44,6 +44,7 @@
             loginBtn.TabIndex = 0;
             loginBtn.Text = "Login";
             loginBtn.UseVisualStyleBackColor = true;
+            loginBtn.Click += loginBtn_Click;
             // 
             // usernameBox
             // 
