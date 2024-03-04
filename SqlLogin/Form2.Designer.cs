@@ -34,46 +34,46 @@
             label4 = new Label();
             textBox1 = new TextBox();
             textBox2 = new TextBox();
+            button1 = new Button();
             textBox3 = new TextBox();
             textBox4 = new TextBox();
-            button1 = new Button();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(98, 63);
+            label1.Location = new Point(76, 63);
             label1.Name = "label1";
-            label1.Size = new Size(38, 15);
+            label1.Size = new Size(60, 15);
             label1.TabIndex = 0;
-            label1.Text = "label1";
+            label1.Text = "Username";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(98, 92);
+            label2.Location = new Point(76, 92);
             label2.Name = "label2";
-            label2.Size = new Size(38, 15);
+            label2.Size = new Size(57, 15);
             label2.TabIndex = 1;
-            label2.Text = "label2";
+            label2.Text = "Password";
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Location = new Point(98, 124);
             label3.Name = "label3";
-            label3.Size = new Size(38, 15);
+            label3.Size = new Size(36, 15);
             label3.TabIndex = 2;
-            label3.Text = "label3";
+            label3.Text = "Email";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(98, 153);
+            label4.Location = new Point(50, 156);
             label4.Name = "label4";
-            label4.Size = new Size(38, 15);
+            label4.Size = new Size(86, 15);
             label4.TabIndex = 3;
-            label4.Text = "label4";
+            label4.Text = "Phone number";
             // 
             // textBox1
             // 
@@ -89,20 +89,6 @@
             textBox2.Size = new Size(176, 23);
             textBox2.TabIndex = 5;
             // 
-            // textBox3
-            // 
-            textBox3.Location = new Point(151, 121);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(176, 23);
-            textBox3.TabIndex = 6;
-            // 
-            // textBox4
-            // 
-            textBox4.Location = new Point(151, 153);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(176, 23);
-            textBox4.TabIndex = 7;
-            // 
             // button1
             // 
             button1.Location = new Point(98, 195);
@@ -112,14 +98,28 @@
             button1.Text = "Register";
             button1.UseVisualStyleBackColor = true;
             // 
+            // textBox3
+            // 
+            textBox3.Location = new Point(151, 116);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(176, 23);
+            textBox3.TabIndex = 9;
+            // 
+            // textBox4
+            // 
+            textBox4.Location = new Point(151, 153);
+            textBox4.Name = "textBox4";
+            textBox4.Size = new Size(176, 23);
+            textBox4.TabIndex = 10;
+            // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(button1);
             Controls.Add(textBox4);
             Controls.Add(textBox3);
+            Controls.Add(button1);
             Controls.Add(textBox2);
             Controls.Add(textBox1);
             Controls.Add(label4);
