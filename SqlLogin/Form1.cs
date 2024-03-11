@@ -31,6 +31,17 @@ namespace SqlLogin
             this.Size = new Size(718, 372);
         }
 
+        private void label3_MouseEnter(object sender, EventArgs e)
+        {
+            createButton.Font = new Font(createButton.Font, FontStyle.Underline);
+        }
+
+        private void label3_MouseLeave(object sender, EventArgs e)
+        {
+            createButton.Font = new Font(createButton.Font, FontStyle.Regular);
+        }
+
+
         private void label5_Click(object sender, EventArgs e)
         {
 
@@ -39,6 +50,16 @@ namespace SqlLogin
         private void label6_Click(object sender, EventArgs e)
         {
             this.Size = new Size(303, 372);
+        }
+
+        private void label6_MouseEnter(object sender, EventArgs e)
+        {
+            closeButton.ForeColor = Color.IndianRed;
+        }
+
+        private void label6_MouseLeave(object sender, EventArgs e)
+        {
+            closeButton.ForeColor = Color.White;
         }
     }
 }

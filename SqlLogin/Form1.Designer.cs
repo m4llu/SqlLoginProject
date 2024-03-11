@@ -57,6 +57,9 @@
             // loginButton
             // 
             loginButton.BackColor = Color.IndianRed;
+            loginButton.FlatAppearance.BorderColor = Color.White;
+            loginButton.FlatAppearance.BorderSize = 2;
+            loginButton.FlatStyle = FlatStyle.Flat;
             loginButton.Location = new Point(20, 224);
             loginButton.Margin = new Padding(3, 4, 3, 4);
             loginButton.Name = "loginButton";
@@ -155,6 +158,8 @@
             createButton.TabIndex = 25;
             createButton.Text = "Don't have an account? Create one.";
             createButton.Click += label3_Click;
+            createButton.MouseEnter += label3_MouseEnter;
+            createButton.MouseLeave += label3_MouseLeave;
             // 
             // panel1
             // 
@@ -177,13 +182,15 @@
             // 
             closeButton.AutoSize = true;
             closeButton.Font = new Font("Impact", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            closeButton.ForeColor = Color.IndianRed;
+            closeButton.ForeColor = Color.White;
             closeButton.Location = new Point(342, 0);
             closeButton.Name = "closeButton";
             closeButton.Size = new Size(37, 42);
             closeButton.TabIndex = 18;
             closeButton.Text = "<";
             closeButton.Click += label6_Click;
+            closeButton.MouseEnter += label6_MouseEnter;
+            closeButton.MouseLeave += label6_MouseLeave;
             // 
             // registerUsernameBox
             // 
