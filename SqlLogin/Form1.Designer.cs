@@ -60,6 +60,7 @@
             loginButton.FlatAppearance.BorderColor = Color.White;
             loginButton.FlatAppearance.BorderSize = 2;
             loginButton.FlatStyle = FlatStyle.Flat;
+            loginButton.ForeColor = Color.FromArgb(255, 192, 192);
             loginButton.Location = new Point(20, 224);
             loginButton.Margin = new Padding(3, 4, 3, 4);
             loginButton.Name = "loginButton";
@@ -94,20 +95,19 @@
             // 
             // loginUsernameBox
             // 
-            loginUsernameBox.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            loginUsernameBox.Font = new Font("Segoe UI", 12F);
             loginUsernameBox.Location = new Point(20, 109);
             loginUsernameBox.Margin = new Padding(3, 4, 3, 4);
             loginUsernameBox.Name = "loginUsernameBox";
             loginUsernameBox.Size = new Size(251, 34);
             loginUsernameBox.TabIndex = 17;
-            loginUsernameBox.TextAlign = HorizontalAlignment.Center;
             // 
             // loginPasswordLabel
             // 
             loginPasswordLabel.AutoSize = true;
             loginPasswordLabel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             loginPasswordLabel.ForeColor = SystemColors.ButtonHighlight;
-            loginPasswordLabel.Location = new Point(20, 155);
+            loginPasswordLabel.Location = new Point(20, 147);
             loginPasswordLabel.Name = "loginPasswordLabel";
             loginPasswordLabel.Size = new Size(73, 20);
             loginPasswordLabel.TabIndex = 19;
@@ -115,13 +115,12 @@
             // 
             // loginPasswordBox
             // 
-            loginPasswordBox.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            loginPasswordBox.Location = new Point(20, 179);
+            loginPasswordBox.Font = new Font("Segoe UI", 12F);
+            loginPasswordBox.Location = new Point(20, 171);
             loginPasswordBox.Margin = new Padding(3, 4, 3, 4);
             loginPasswordBox.Name = "loginPasswordBox";
             loginPasswordBox.Size = new Size(251, 34);
             loginPasswordBox.TabIndex = 20;
-            loginPasswordBox.TextAlign = HorizontalAlignment.Center;
             // 
             // splitContainer1
             // 
@@ -194,13 +193,12 @@
             // 
             // registerUsernameBox
             // 
-            registerUsernameBox.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            registerUsernameBox.Font = new Font("Segoe UI", 12F);
             registerUsernameBox.Location = new Point(13, 94);
             registerUsernameBox.Margin = new Padding(3, 4, 3, 4);
             registerUsernameBox.Name = "registerUsernameBox";
             registerUsernameBox.Size = new Size(159, 34);
             registerUsernameBox.TabIndex = 22;
-            registerUsernameBox.TextAlign = HorizontalAlignment.Center;
             // 
             // registerLabel
             // 
@@ -216,13 +214,12 @@
             // 
             // registerPasswordBox
             // 
-            registerPasswordBox.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            registerPasswordBox.Font = new Font("Segoe UI", 12F);
             registerPasswordBox.Location = new Point(207, 94);
             registerPasswordBox.Margin = new Padding(3, 4, 3, 4);
             registerPasswordBox.Name = "registerPasswordBox";
             registerPasswordBox.Size = new Size(159, 34);
             registerPasswordBox.TabIndex = 24;
-            registerPasswordBox.TextAlign = HorizontalAlignment.Center;
             // 
             // registerButton
             // 
@@ -230,6 +227,7 @@
             registerButton.FlatAppearance.BorderColor = Color.White;
             registerButton.FlatAppearance.BorderSize = 2;
             registerButton.FlatStyle = FlatStyle.Flat;
+            registerButton.ForeColor = Color.FromArgb(255, 192, 192);
             registerButton.Location = new Point(257, 209);
             registerButton.Margin = new Padding(3, 4, 3, 4);
             registerButton.Name = "registerButton";
@@ -263,13 +261,12 @@
             // 
             // emailBox
             // 
-            emailBox.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            emailBox.Font = new Font("Segoe UI", 12F);
             emailBox.Location = new Point(13, 156);
             emailBox.Margin = new Padding(3, 4, 3, 4);
             emailBox.Name = "emailBox";
             emailBox.Size = new Size(353, 34);
             emailBox.TabIndex = 12;
-            emailBox.TextAlign = HorizontalAlignment.Center;
             // 
             // registerPasswordLabel
             // 
