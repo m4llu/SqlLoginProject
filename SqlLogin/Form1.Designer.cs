@@ -237,6 +237,7 @@
             registerButton.TabIndex = 8;
             registerButton.Text = "Register";
             registerButton.UseVisualStyleBackColor = false;
+            registerButton.Click += registerButton_Click;
             // 
             // emailLabel
             // 
