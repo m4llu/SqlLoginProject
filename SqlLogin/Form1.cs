@@ -16,7 +16,7 @@ namespace SqlLogin
         {
             string username = registerUsernameBox.Text.Trim();
             string password = registerPasswordBox.Text.Trim();
-            string email    = emailBox.Text.Trim();
+            string email = emailBox.Text.Trim();
 
             string querycheck = "SELECT COUNT(1) FROM Table_1 WHERE username=@Username";
 
@@ -48,7 +48,7 @@ namespace SqlLogin
                             {
                                 cmd.Parameters.AddWithValue("@username", username);
                                 cmd.Parameters.AddWithValue("@password", password);
-                                cmd.Parameters.AddWithValue("@email",    email);
+                                cmd.Parameters.AddWithValue("@email", email);
 
                                 connection.Open();
 
@@ -141,6 +141,12 @@ namespace SqlLogin
         private void label6_MouseLeave(object sender, EventArgs e)
         {
             closeButton.ForeColor = Color.White;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Dashboard f2 = new Dashboard(); //this is the change, code for redirect  
+            f2.ShowDialog();
         }
     }
 }
