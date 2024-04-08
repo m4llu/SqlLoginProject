@@ -49,7 +49,6 @@
             label1 = new Label();
             pictureBox1 = new PictureBox();
             colorPreview = new Panel();
-            lockedPreview = new Panel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -214,7 +213,7 @@
             button7.Location = new Point(487, 178);
             button7.Margin = new Padding(3, 4, 3, 4);
             button7.Name = "button7";
-            button7.Size = new Size(226, 46);
+            button7.Size = new Size(264, 46);
             button7.TabIndex = 8;
             button7.Text = "Add";
             button7.UseVisualStyleBackColor = true;
@@ -297,20 +296,12 @@
             colorPreview.Size = new Size(32, 156);
             colorPreview.TabIndex = 18;
             // 
-            // lockedPreview
-            // 
-            lockedPreview.Location = new Point(757, 4);
-            lockedPreview.Name = "lockedPreview";
-            lockedPreview.Size = new Size(32, 156);
-            lockedPreview.TabIndex = 19;
-            // 
             // Dashboard
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(46, 51, 72);
             ClientSize = new Size(1485, 933);
-            Controls.Add(lockedPreview);
             Controls.Add(colorPreview);
             Controls.Add(pictureBox1);
             Controls.Add(button7);
@@ -358,6 +349,5 @@
         private Label label1;
         private PictureBox pictureBox1;
         private Panel colorPreview;
-        private Panel lockedPreview;
     }
 }

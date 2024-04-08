@@ -59,7 +59,7 @@ namespace SqlLogin
 
             Panel panel = new Panel();
             panel.Size = new Size(panelWidth, panelHeight);
-            panel.BackColor = Color.White;
+            panel.BackColor = Color.Black;
             panel.Margin = new Padding(25, 25, 25, 25);
 
             Button button = new Button();
@@ -67,13 +67,13 @@ namespace SqlLogin
             button.Location = new Point(10, panel.Height - button.Height - 10); // Align button to bottom-left corner
 
             Label titleLabel = new Label();
-            titleLabel.ForeColor = Color.Black; // Changed text color to black for better visibility
+            titleLabel.ForeColor = Color.White; // Changed text color to black for better visibility
             titleLabel.Text = taskTitleBox.Text;
             titleLabel.AutoSize = true; // Automatically adjust label size based on content
             titleLabel.Location = new Point(10, 10); // Align label to top-left corner
 
             Label contentLabel = new Label();
-            contentLabel.ForeColor = Color.Black; // Changed text color to black for better visibility
+            contentLabel.ForeColor = Color.White; // Changed text color to black for better visibility
             contentLabel.Text = taskContentBox.Text;
             contentLabel.AutoSize = true; // Automatically adjust label size based on content
             contentLabel.Location = new Point(10, titleLabel.Bottom + 5); // Align label below title label
@@ -110,7 +110,7 @@ namespace SqlLogin
             Bitmap pixelData = (Bitmap)pictureBox1.Image;
             Color clr = pixelData.GetPixel(e.X, e.Y);
             colorPreview.BackColor = clr;
-            lockedPreview.BackColor = lockedColor;
+            button7.BackColor = lockedColor;
         }
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
