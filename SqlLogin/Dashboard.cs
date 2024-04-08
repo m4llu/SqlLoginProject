@@ -32,6 +32,11 @@ namespace SqlLogin
             flowLayoutPanel1.VerticalScroll.Visible = true;
         }
 
+        private void Dashboard_Load(object sender, EventArgs e)
+        {
+            this.Size = new Size(1299, 700);
+        }
+
         Color lockedColor;
 
         private void button6_Click(object sender, EventArgs e)
@@ -69,6 +74,7 @@ namespace SqlLogin
             Label titleLabel = new Label();
             titleLabel.ForeColor = Color.White;
             titleLabel.Text = taskTitleBox.Text;
+            titleLabel.Font = new Font(titleLabel.Font, FontStyle.Bold); // Set the font to bold
             titleLabel.AutoSize = false; // Set to false to manually adjust label size
             titleLabel.Size = new Size(panelWidth - 20, 30); // Adjust the height and width as needed
             titleLabel.Location = new Point(10, 10);
@@ -125,12 +131,12 @@ namespace SqlLogin
             Color clr = pixelData.GetPixel(e.X, e.Y);
             colorPreview.BackColor = clr;
             button7.BackColor = lockedColor;
-            UpdateTaskPreview(false);
         }
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             lockedColor = colorPreview.BackColor;
+            UpdateTaskPreview(false);
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -142,9 +148,10 @@ namespace SqlLogin
         private bool isPanelMinimized = true;
         private int originalPanelHeight;
         private bool isLocked = true;
-        
+        private string selectedView = "panelRequirements";
 
-        
+
+
 
         private void panel3_MouseMove(object sender, MouseEventArgs e)
         {
@@ -202,18 +209,118 @@ namespace SqlLogin
                 isPanelMinimized = false;
                 panel3.AutoSize = true; // Set AutoSize to true when panel is maximized
                 isLocked = false;
-                button8.Text = "🢃";
+                button8.Text = "🢁";
             }
             else
             {
                 isPanelMinimized = true;
                 panel3.AutoSize = false; // Set AutoSize to false when panel is minimized
-                panel3.Height = 40;
+                panel3.Height = 32;
                 isLocked = true;
-                panel3.Location = new Point(243, 12);
-                button8.Text = "🢁";
+                panel3.Location = new Point(6, 97);
+                button8.Text = "🢃";
             }
+        }
+        private void button9_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(1);
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel3_Paint_1(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void ShowSelectedPanel(string selectedView)
+        {
+            // Create a list of panel names that should be affected
+            List<string> panelNames = new List<string> { "panelUsers", "panelRequirements", "panelInfo" };
+
+            // Iterate through all controls in the form
+            foreach (Control control in this.Controls)
+            {
+                // Check if the control is a Panel and its name is in the list
+                if (control is Panel && panelNames.Contains(control.Name))
+                {
+                    // Cast the control to a Panel
+                    Panel panel = (Panel)control;
+
+                    // Check if the panel's name matches the selectedView
+                    if (panel.Name == selectedView)
+                    {
+                        // Show the selected panel
+                        panel.Visible = true;
+                        panel.Location = new Point(206, 47);
+                        panel.Size = new Size(1098, 657);
+                    }
+                    else
+                    {
+                        // Hide the unselected panels
+                        panel.Visible = false;
+                    }
+                }
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            selectedView = "panelInfo";
+            ShowSelectedPanel(selectedView);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            selectedView = "panelRequirements";
+            ShowSelectedPanel(selectedView);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            selectedView = "panelUsers";
+            ShowSelectedPanel(selectedView);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private bool mouseDown;
+        private Point lastLocation;
+
+        private void panel4_MouseDown(object sender, MouseEventArgs e)
+        {
+            mouseDown = true;
+            lastLocation = e.Location;
+        }
+
+        private void panel4_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (mouseDown)
+            {
+                this.Location = new Point(
+                    (this.Location.X - lastLocation.X) + e.X,
+                    (this.Location.Y - lastLocation.Y) + e.Y);
+
+                this.Update();
+            }
+        }
+
+        private void panel4_MouseUp(object sender, MouseEventArgs e)
+        {
+            mouseDown = false;
         }
     }
 }
+
 
