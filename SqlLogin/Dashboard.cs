@@ -60,29 +60,40 @@ namespace SqlLogin
             Panel panel = new Panel();
             panel.Size = new Size(panelWidth, panelHeight);
             panel.BackColor = Color.Black;
-            panel.Margin = new Padding(25, 25, 25, 25);
 
             Button button = new Button();
             button.Text = "Click Me";
             button.Location = new Point(10, panel.Height - button.Height - 10); // Align button to bottom-left corner
 
             Label titleLabel = new Label();
-            titleLabel.ForeColor = Color.White; // Changed text color to black for better visibility
+            titleLabel.ForeColor = Color.White;
             titleLabel.Text = taskTitleBox.Text;
-            titleLabel.AutoSize = true; // Automatically adjust label size based on content
-            titleLabel.Location = new Point(10, 10); // Align label to top-left corner
+            titleLabel.AutoSize = false;
+            titleLabel.Size = GetLabelSize(panelWidth, taskTitleBox.Text, titleLabel.Font);
+            titleLabel.Location = new Point(10, 10);
 
             Label contentLabel = new Label();
-            contentLabel.ForeColor = Color.White; // Changed text color to black for better visibility
+            contentLabel.ForeColor = Color.White;
             contentLabel.Text = taskContentBox.Text;
-            contentLabel.AutoSize = true; // Automatically adjust label size based on content
-            contentLabel.Location = new Point(10, titleLabel.Bottom + 5); // Align label below title label
+            contentLabel.AutoSize = false;
+            contentLabel.Size = GetLabelSize(panelWidth, taskContentBox.Text, contentLabel.Font);
+            contentLabel.Location = new Point(10, titleLabel.Bottom + 5);
 
             panel.Controls.Add(titleLabel);
             panel.Controls.Add(contentLabel);
             panel.Controls.Add(button);
             panel.BackColor = lockedColor;
+            panel.Width += 15;
             flowLayoutPanel1.Controls.Add(panel);
+        }
+
+        private Size GetLabelSize(int maxWidth, string text, Font font)
+        {
+            using (Graphics g = CreateGraphics())
+            {
+                SizeF size = g.MeasureString(text, font, maxWidth);
+                return new Size((int)size.Width, (int)size.Height);
+            }
         }
 
         private void panel5_Paint(object sender, PaintEventArgs e)
