@@ -40,9 +40,13 @@
             taskHeightInput = new TextBox();
             taskSizeInput = new TextBox();
             button7 = new Button();
-            panel5 = new Panel();
+            label4 = new Label();
+            label3 = new Label();
+            taskContentBox = new TextBox();
+            taskTitleBox = new TextBox();
+            label2 = new Label();
+            label1 = new Label();
             panel1.SuspendLayout();
-            panel5.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -181,7 +185,7 @@
             // 
             // taskHeightInput
             // 
-            taskHeightInput.Location = new Point(14, 72);
+            taskHeightInput.Location = new Point(243, 189);
             taskHeightInput.Margin = new Padding(3, 4, 3, 4);
             taskHeightInput.Name = "taskHeightInput";
             taskHeightInput.Size = new Size(140, 27);
@@ -189,7 +193,7 @@
             // 
             // taskSizeInput
             // 
-            taskSizeInput.Location = new Point(14, 20);
+            taskSizeInput.Location = new Point(243, 137);
             taskSizeInput.Margin = new Padding(3, 4, 3, 4);
             taskSizeInput.Name = "taskSizeInput";
             taskSizeInput.Size = new Size(140, 27);
@@ -202,7 +206,7 @@
             button7.FlatAppearance.MouseDownBackColor = Color.Turquoise;
             button7.FlatStyle = FlatStyle.Flat;
             button7.ForeColor = SystemColors.ButtonHighlight;
-            button7.Location = new Point(15, 476);
+            button7.Location = new Point(500, 131);
             button7.Margin = new Padding(3, 4, 3, 4);
             button7.Name = "button7";
             button7.Size = new Size(229, 81);
@@ -211,18 +215,62 @@
             button7.UseVisualStyleBackColor = true;
             button7.Click += button7_Click;
             // 
-            // panel5
+            // label4
             // 
-            panel5.Anchor = AnchorStyles.None;
-            panel5.Controls.Add(taskHeightInput);
-            panel5.Controls.Add(taskSizeInput);
-            panel5.Controls.Add(button7);
-            panel5.Location = new Point(897, 39);
-            panel5.Margin = new Padding(3, 4, 3, 4);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(382, 609);
-            panel5.TabIndex = 2;
-            panel5.Paint += panel5_Paint;
+            label4.AutoSize = true;
+            label4.ForeColor = SystemColors.ControlLightLight;
+            label4.Location = new Point(389, 88);
+            label4.Name = "label4";
+            label4.Size = new Size(92, 20);
+            label4.TabIndex = 16;
+            label4.Text = "Task Content";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.ForeColor = SystemColors.ControlLightLight;
+            label3.Location = new Point(389, 38);
+            label3.Name = "label3";
+            label3.Size = new Size(69, 20);
+            label3.TabIndex = 15;
+            label3.Text = "Task Title";
+            // 
+            // taskContentBox
+            // 
+            taskContentBox.Location = new Point(243, 85);
+            taskContentBox.Margin = new Padding(3, 4, 3, 4);
+            taskContentBox.Name = "taskContentBox";
+            taskContentBox.Size = new Size(140, 27);
+            taskContentBox.TabIndex = 14;
+            taskContentBox.TextChanged += taskContentBox_TextChanged;
+            // 
+            // taskTitleBox
+            // 
+            taskTitleBox.Location = new Point(243, 35);
+            taskTitleBox.Margin = new Padding(3, 4, 3, 4);
+            taskTitleBox.Name = "taskTitleBox";
+            taskTitleBox.Size = new Size(140, 27);
+            taskTitleBox.TabIndex = 13;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.ForeColor = SystemColors.ControlLightLight;
+            label2.Location = new Point(389, 192);
+            label2.Name = "label2";
+            label2.Size = new Size(85, 20);
+            label2.TabIndex = 12;
+            label2.Text = "Task Height";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.ForeColor = SystemColors.ControlLightLight;
+            label1.Location = new Point(389, 140);
+            label1.Name = "label1";
+            label1.Size = new Size(80, 20);
+            label1.TabIndex = 11;
+            label1.Text = "Task Width";
             // 
             // Dashboard
             // 
@@ -230,9 +278,17 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(46, 51, 72);
             ClientSize = new Size(1485, 933);
+            Controls.Add(button7);
+            Controls.Add(label4);
             Controls.Add(panel1);
-            Controls.Add(panel5);
+            Controls.Add(label3);
+            Controls.Add(taskContentBox);
+            Controls.Add(taskTitleBox);
             Controls.Add(flowLayoutPanel1);
+            Controls.Add(label2);
+            Controls.Add(taskSizeInput);
+            Controls.Add(label1);
+            Controls.Add(taskHeightInput);
             ForeColor = SystemColors.ControlText;
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
@@ -240,9 +296,8 @@
             RightToLeftLayout = true;
             Text = "Dashboard";
             panel1.ResumeLayout(false);
-            panel5.ResumeLayout(false);
-            panel5.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -259,6 +314,11 @@
         private TextBox taskSizeInput;
         private TextBox taskHeightInput;
         private Button button7;
-        private Panel panel5;
+        private Label label4;
+        private Label label3;
+        private TextBox taskContentBox;
+        private TextBox taskTitleBox;
+        private Label label2;
+        private Label label1;
     }
 }

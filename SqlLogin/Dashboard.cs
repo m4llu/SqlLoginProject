@@ -45,23 +45,42 @@ namespace SqlLogin
 
         private void button7_Click(object sender, EventArgs e)
         {
+            string width = taskSizeInput.Text;
+            string height = taskHeightInput.Text;
 
-            string x = taskSizeInput.Text;
-            string y = taskHeightInput.Text;
+            int panelWidth, panelHeight;
+            if (!int.TryParse(width, out panelWidth) || !int.TryParse(height, out panelHeight))
+            {
+                // Handle invalid input
+                MessageBox.Show("Please enter valid width and height values.");
+                return;
+            }
+
             Panel panel = new Panel();
-            panel.Size = new Size(Convert.ToInt32(x), Convert.ToInt32(y));
+            panel.Size = new Size(panelWidth, panelHeight);
             panel.BackColor = Color.White;
             panel.Margin = new Padding(25, 25, 25, 25);
 
             Button button = new Button();
             button.Text = "Click Me";
-            button.Location = new Point(10, 10);
+            button.Location = new Point(10, panel.Height - button.Height - 10); // Align button to bottom-left corner
 
+            Label titleLabel = new Label();
+            titleLabel.ForeColor = Color.Black; // Changed text color to black for better visibility
+            titleLabel.Text = taskTitleBox.Text;
+            titleLabel.AutoSize = true; // Automatically adjust label size based on content
+            titleLabel.Location = new Point(10, 10); // Align label to top-left corner
+
+            Label contentLabel = new Label();
+            contentLabel.ForeColor = Color.Black; // Changed text color to black for better visibility
+            contentLabel.Text = taskContentBox.Text;
+            contentLabel.AutoSize = true; // Automatically adjust label size based on content
+            contentLabel.Location = new Point(10, titleLabel.Bottom + 5); // Align label below title label
+
+            panel.Controls.Add(titleLabel);
+            panel.Controls.Add(contentLabel);
             panel.Controls.Add(button);
             flowLayoutPanel1.Controls.Add(panel);
-
-
-
         }
 
         private void panel5_Paint(object sender, PaintEventArgs e)
@@ -75,6 +94,11 @@ namespace SqlLogin
         }
 
         private void taskHeightInput_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void taskContentBox_TextChanged(object sender, EventArgs e)
         {
 
         }
