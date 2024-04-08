@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 
 namespace SqlLogin
 {
+
     public partial class Form1 : Form
     {
         public Form1()
@@ -69,6 +70,8 @@ namespace SqlLogin
                 }
             }
         }
+
+
 
         private void loginBtn_Click(object sender, EventArgs e)
         {

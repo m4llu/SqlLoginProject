@@ -35,6 +35,7 @@
             loginPasswordLabel = new Label();
             loginPasswordBox = new TextBox();
             splitContainer1 = new SplitContainer();
+            button1 = new Button();
             createButton = new Label();
             panel1 = new Panel();
             closeButton = new Label();
@@ -47,7 +48,6 @@
             emailBox = new TextBox();
             registerPasswordLabel = new Label();
             checkBox1 = new CheckBox();
-            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -57,9 +57,9 @@
             // 
             // loginButton
             // 
-            loginButton.BackColor = Color.IndianRed;
+            loginButton.BackColor = Color.FromArgb(32, 39, 52);
             loginButton.FlatAppearance.BorderColor = Color.White;
-            loginButton.FlatAppearance.BorderSize = 2;
+            loginButton.FlatAppearance.BorderSize = 0;
             loginButton.FlatStyle = FlatStyle.Flat;
             loginButton.ForeColor = Color.FromArgb(255, 192, 192);
             loginButton.Location = new Point(18, 168);
@@ -73,11 +73,11 @@
             // loginLabel
             // 
             loginLabel.AutoSize = true;
-            loginLabel.Font = new Font("Segoe UI Semibold", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            loginLabel.Font = new Font("Tw Cen MT", 20.25F);
             loginLabel.ForeColor = SystemColors.ControlLightLight;
             loginLabel.Location = new Point(9, 20);
             loginLabel.Name = "loginLabel";
-            loginLabel.Size = new Size(92, 37);
+            loginLabel.Size = new Size(77, 31);
             loginLabel.TabIndex = 24;
             loginLabel.Text = "Login.";
             loginLabel.Click += label4_Click;
@@ -85,11 +85,11 @@
             // loginUsernameLabel
             // 
             loginUsernameLabel.AutoSize = true;
-            loginUsernameLabel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            loginUsernameLabel.Font = new Font("Tw Cen MT", 12F);
             loginUsernameLabel.ForeColor = SystemColors.ButtonHighlight;
             loginUsernameLabel.Location = new Point(18, 64);
             loginUsernameLabel.Name = "loginUsernameLabel";
-            loginUsernameLabel.Size = new Size(60, 15);
+            loginUsernameLabel.Size = new Size(72, 19);
             loginUsernameLabel.TabIndex = 16;
             loginUsernameLabel.Text = "Username";
             // 
@@ -104,11 +104,11 @@
             // loginPasswordLabel
             // 
             loginPasswordLabel.AutoSize = true;
-            loginPasswordLabel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            loginPasswordLabel.Font = new Font("Tw Cen MT", 12F);
             loginPasswordLabel.ForeColor = SystemColors.ButtonHighlight;
             loginPasswordLabel.Location = new Point(18, 110);
             loginPasswordLabel.Name = "loginPasswordLabel";
-            loginPasswordLabel.Size = new Size(57, 15);
+            loginPasswordLabel.Size = new Size(69, 19);
             loginPasswordLabel.TabIndex = 19;
             loginPasswordLabel.Text = "Password";
             // 
@@ -128,7 +128,7 @@
             // 
             // splitContainer1.Panel1
             // 
-            splitContainer1.Panel1.BackColor = Color.Gray;
+            splitContainer1.Panel1.BackColor = Color.FromArgb(21, 21, 28);
             splitContainer1.Panel1.Controls.Add(button1);
             splitContainer1.Panel1.Controls.Add(createButton);
             splitContainer1.Panel1.Controls.Add(loginLabel);
@@ -140,11 +140,21 @@
             // 
             // splitContainer1.Panel2
             // 
-            splitContainer1.Panel2.BackColor = Color.FromArgb(55, 55, 55);
+            splitContainer1.Panel2.BackColor = Color.FromArgb(16, 17, 23);
             splitContainer1.Panel2.Controls.Add(panel1);
             splitContainer1.Size = new Size(752, 396);
             splitContainer1.SplitterDistance = 250;
             splitContainer1.TabIndex = 25;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(111, 23);
+            button1.Name = "button1";
+            button1.Size = new Size(127, 35);
+            button1.TabIndex = 26;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // createButton
             // 
@@ -203,11 +213,11 @@
             // registerLabel
             // 
             registerLabel.AutoSize = true;
-            registerLabel.Font = new Font("Segoe UI Semibold", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            registerLabel.Font = new Font("Tw Cen MT", 20.25F);
             registerLabel.ForeColor = SystemColors.ControlLightLight;
             registerLabel.Location = new Point(11, 10);
             registerLabel.Name = "registerLabel";
-            registerLabel.Size = new Size(245, 37);
+            registerLabel.Size = new Size(216, 31);
             registerLabel.TabIndex = 15;
             registerLabel.Text = "Create an account.";
             registerLabel.Click += label5_Click;
@@ -222,9 +232,9 @@
             // 
             // registerButton
             // 
-            registerButton.BackColor = Color.IndianRed;
+            registerButton.BackColor = Color.FromArgb(32, 39, 52);
             registerButton.FlatAppearance.BorderColor = Color.White;
-            registerButton.FlatAppearance.BorderSize = 2;
+            registerButton.FlatAppearance.BorderSize = 0;
             registerButton.FlatStyle = FlatStyle.Flat;
             registerButton.ForeColor = Color.FromArgb(255, 192, 192);
             registerButton.Location = new Point(225, 157);
@@ -238,22 +248,22 @@
             // emailLabel
             // 
             emailLabel.AutoSize = true;
-            emailLabel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            emailLabel.Font = new Font("Tw Cen MT", 12F);
             emailLabel.ForeColor = SystemColors.ButtonHighlight;
             emailLabel.Location = new Point(11, 99);
             emailLabel.Name = "emailLabel";
-            emailLabel.Size = new Size(36, 15);
+            emailLabel.Size = new Size(42, 19);
             emailLabel.TabIndex = 11;
             emailLabel.Text = "Email";
             // 
             // registerUsernameLabel
             // 
             registerUsernameLabel.AutoSize = true;
-            registerUsernameLabel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            registerUsernameLabel.Font = new Font("Tw Cen MT", 12F);
             registerUsernameLabel.ForeColor = SystemColors.ButtonHighlight;
             registerUsernameLabel.Location = new Point(11, 52);
             registerUsernameLabel.Name = "registerUsernameLabel";
-            registerUsernameLabel.Size = new Size(60, 15);
+            registerUsernameLabel.Size = new Size(72, 19);
             registerUsernameLabel.TabIndex = 21;
             registerUsernameLabel.Text = "Username";
             // 
@@ -268,11 +278,11 @@
             // registerPasswordLabel
             // 
             registerPasswordLabel.AutoSize = true;
-            registerPasswordLabel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            registerPasswordLabel.Font = new Font("Tw Cen MT", 12F);
             registerPasswordLabel.ForeColor = SystemColors.ButtonHighlight;
             registerPasswordLabel.Location = new Point(181, 52);
             registerPasswordLabel.Name = "registerPasswordLabel";
-            registerPasswordLabel.Size = new Size(57, 15);
+            registerPasswordLabel.Size = new Size(69, 19);
             registerPasswordLabel.TabIndex = 23;
             registerPasswordLabel.Text = "Password";
             // 
@@ -287,16 +297,6 @@
             checkBox1.TabIndex = 14;
             checkBox1.Text = "I agree to sell my data to China";
             checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(111, 23);
-            button1.Name = "button1";
-            button1.Size = new Size(127, 35);
-            button1.TabIndex = 26;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
             // 
             // Form1
             // 

@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.IO;
+using System.Text.Json;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace SqlLogin
 {
@@ -32,9 +35,17 @@ namespace SqlLogin
             flowLayoutPanel1.VerticalScroll.Visible = true;
         }
 
+
+
+
+
         private void Dashboard_Load(object sender, EventArgs e)
         {
             this.Size = new Size(1299, 700);
+            string documentsFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            string filePath = Path.Combine(documentsFolder, projectName + ".kiverio");
+
+            filePathTextBox.Text = filePath;
         }
 
         Color lockedColor;
@@ -239,7 +250,7 @@ namespace SqlLogin
         private void ShowSelectedPanel(string selectedView)
         {
             // Create a list of panel names that should be affected
-            List<string> panelNames = new List<string> { "panelUsers", "panelRequirements", "panelInfo" };
+            List<string> panelNames = new List<string> { "panelUsers", "panelRequirements", "panelInfo", "panelFile" };
 
             // Iterate through all controls in the form
             foreach (Control control in this.Controls)
@@ -287,7 +298,8 @@ namespace SqlLogin
 
         private void button4_Click(object sender, EventArgs e)
         {
-
+            selectedView = "panelFile";
+            ShowSelectedPanel(selectedView);
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -316,9 +328,132 @@ namespace SqlLogin
             }
         }
 
+
+
         private void panel4_MouseUp(object sender, MouseEventArgs e)
         {
             mouseDown = false;
+        }
+        private void panel8_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private string projectName = "Project1";
+        private string projectVersion = "0.0.1";
+        private string projectDesc = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+
+        private void refreshProjectInfo()
+        {
+            projectName = projectNameBox.Text; 
+            projectVersion = projectVersionBox.Text; 
+            projectDesc = projectDescBox.Text;
+
+            projectNameLabel.Text = projectNameBox.Text;
+            projectVersionLabel.Text = projectVersionBox.Text;
+            projectDescLabel.Text = projectDescBox.Text;
+        }
+
+        private void projectNameBox_TextChanged(object sender, EventArgs e)
+        {
+            refreshProjectInfo();
+        }
+
+        private void projectVersionBox_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            refreshProjectInfo();
+        }
+
+        private void projectDescBox_TextChanged(object sender, EventArgs e)
+        {
+            refreshProjectInfo();
+        }
+
+        public class ProjectInfo
+        {
+            public string ProjectName { get; set; }
+            public string ProjectVersion { get; set; }
+            public string ProjectDesc { get; set; }
+        }
+
+        private void SaveProjectInfo(string projectName)
+        {
+            ProjectInfo projectInfo = new ProjectInfo
+            {
+                ProjectName = this.projectName,
+                ProjectVersion = this.projectVersion,
+                ProjectDesc = this.projectDesc
+            };
+
+            string documentsFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            string filePath = Path.Combine(documentsFolder, projectName + ".kiverio");
+
+            filePathTextBox.Text = filePath;
+
+            try
+            {
+                string json = JsonSerializer.Serialize(projectInfo);
+                File.WriteAllText(filePath, json);
+                MessageBox.Show("Project info saved successfully.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error saving project info: " + ex.Message);
+            }
+        }
+
+        private ProjectInfo LoadProjectInfo(string projectName)
+        {
+            string documentsFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            string filePath = Path.Combine(documentsFolder, projectName);
+            filePathTextBox.Text = filePath;
+            try
+            {
+                if (File.Exists(filePath))
+                {
+                    string json = File.ReadAllText(filePath);
+                    return JsonSerializer.Deserialize<ProjectInfo>(json);
+                }
+                else
+                {
+                    MessageBox.Show("Project info file not found.");
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading project info: " + ex.Message);
+                return null;
+            }
+        }
+
+        // Example usage:
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            // Assuming filePathTextBox contains the file path entered by the user
+            string filePath = filePathTextBox.Text;
+            SaveProjectInfo(projectName);
+        }
+
+        private void LoadButton_Click(object sender, EventArgs e)
+        {
+            // Assuming filePathTextBox contains the file path entered by the user
+            string filePath = filePathTextBox.Text;
+            ProjectInfo loadedProjectInfo = LoadProjectInfo(filePath);
+            if (loadedProjectInfo != null)
+            {
+                projectName = loadedProjectInfo.ProjectName;
+                projectVersion = loadedProjectInfo.ProjectVersion;
+                projectDesc = loadedProjectInfo.ProjectDesc;
+
+                // Update UI with loaded project info
+                projectNameBox.Text = projectName;
+                projectVersionBox.Text = projectVersion;
+                projectDescBox.Text = projectDesc;
+                projectNameLabel.Text = projectNameBox.Text;
+                projectVersionLabel.Text = projectVersionBox.Text;
+                projectDescLabel.Text = projectDescBox.Text;
+            }
         }
     }
 }

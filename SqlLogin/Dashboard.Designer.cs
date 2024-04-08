@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             panel1 = new Panel();
+            panel7 = new Panel();
             button6 = new Button();
             button5 = new Button();
             button4 = new Button();
@@ -60,13 +61,29 @@
             taskPreview = new Panel();
             button9 = new Button();
             panel4 = new Panel();
+            label11 = new Label();
             panel5 = new Panel();
             panelRequirements = new Panel();
+            label14 = new Label();
             panelUsers = new Panel();
             label10 = new Label();
             panelInfo = new Panel();
+            projectDescLabel = new Label();
+            projectVersionLabel = new Label();
+            projectNameLabel = new Label();
+            panel6 = new Panel();
+            label16 = new Label();
+            projectDescBox = new RichTextBox();
+            projectVersionBox = new MaskedTextBox();
+            label13 = new Label();
+            projectNameBox = new TextBox();
+            label12 = new Label();
             label9 = new Label();
-            label11 = new Label();
+            panelFile = new Panel();
+            loadButton = new Button();
+            saveButton = new Button();
+            filePathTextBox = new TextBox();
+            label15 = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panelInformation.SuspendLayout();
@@ -76,11 +93,14 @@
             panelRequirements.SuspendLayout();
             panelUsers.SuspendLayout();
             panelInfo.SuspendLayout();
+            panel6.SuspendLayout();
+            panelFile.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(13, 17, 22);
+            panel1.Controls.Add(panel7);
             panel1.Controls.Add(button6);
             panel1.Controls.Add(button5);
             panel1.Controls.Add(button4);
@@ -93,6 +113,13 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(200, 700);
             panel1.TabIndex = 0;
+            // 
+            // panel7
+            // 
+            panel7.Location = new Point(6, 606);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(188, 87);
+            panel7.TabIndex = 8;
             // 
             // button6
             // 
@@ -144,7 +171,7 @@
             button4.Name = "button4";
             button4.Size = new Size(200, 61);
             button4.TabIndex = 5;
-            button4.Text = "button4";
+            button4.Text = "FILE";
             button4.UseVisualStyleBackColor = false;
             button4.Click += button4_Click;
             // 
@@ -162,7 +189,7 @@
             btnUsers.Name = "btnUsers";
             btnUsers.Size = new Size(200, 61);
             btnUsers.TabIndex = 4;
-            btnUsers.Text = "USERS";
+            btnUsers.Text = "TEAM";
             btnUsers.UseVisualStyleBackColor = false;
             btnUsers.Click += button3_Click;
             // 
@@ -215,11 +242,11 @@
             // 
             // label7
             // 
-            label7.Font = new Font("Showcard Gothic", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label7.Font = new Font("Tw Cen MT Condensed", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.ForeColor = SystemColors.ActiveCaption;
-            label7.Location = new Point(21, 85);
+            label7.Location = new Point(6, 117);
             label7.Name = "label7";
-            label7.Size = new Size(164, 80);
+            label7.Size = new Size(188, 19);
             label7.TabIndex = 1;
             label7.Text = "REQUIREMENT MANAGEMENT SYSTEM";
             label7.TextAlign = ContentAlignment.MiddleCenter;
@@ -246,11 +273,11 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Font = new Font("Showcard Gothic", 26.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label6.Font = new Font("Tw Cen MT", 30F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.ForeColor = SystemColors.ButtonHighlight;
-            label6.Location = new Point(12, 48);
+            label6.Location = new Point(6, 75);
             label6.Name = "label6";
-            label6.Size = new Size(184, 44);
+            label6.Size = new Size(190, 47);
             label6.TabIndex = 0;
             label6.Text = "KIVERIÖN";
             // 
@@ -422,9 +449,9 @@
             label5.ForeColor = SystemColors.ControlLightLight;
             label5.Location = new Point(37, 7);
             label5.Name = "label5";
-            label5.Size = new Size(86, 17);
+            label5.Size = new Size(61, 17);
             label5.TabIndex = 22;
-            label5.Text = "Task Creator";
+            label5.Text = "Designer";
             // 
             // button8
             // 
@@ -478,6 +505,17 @@
             panel4.MouseMove += panel4_MouseMove;
             panel4.MouseUp += panel4_MouseUp;
             // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Font = new Font("Tw Cen MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label11.ForeColor = SystemColors.ControlLightLight;
+            label11.Location = new Point(12, 11);
+            label11.Name = "label11";
+            label11.Size = new Size(506, 24);
+            label11.TabIndex = 24;
+            label11.Text = "Kiveriö Project Management Tool 1.0.2 Enterprise Edition ";
+            // 
             // panel5
             // 
             panel5.Location = new Point(206, 44);
@@ -487,12 +525,24 @@
             // 
             // panelRequirements
             // 
+            panelRequirements.Controls.Add(label14);
             panelRequirements.Controls.Add(panel3);
             panelRequirements.Controls.Add(flowLayoutPanel1);
             panelRequirements.Location = new Point(202, 45);
             panelRequirements.Name = "panelRequirements";
             panelRequirements.Size = new Size(1098, 657);
             panelRequirements.TabIndex = 23;
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Font = new Font("Tw Cen MT", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label14.ForeColor = SystemColors.ControlLightLight;
+            label14.Location = new Point(6, 31);
+            label14.Name = "label14";
+            label14.Size = new Size(430, 37);
+            label14.TabIndex = 21;
+            label14.Text = "PROJECT REQUIREMENT WALL";
             // 
             // panelUsers
             // 
@@ -516,12 +566,127 @@
             // 
             // panelInfo
             // 
+            panelInfo.Controls.Add(projectDescLabel);
+            panelInfo.Controls.Add(projectVersionLabel);
+            panelInfo.Controls.Add(projectNameLabel);
+            panelInfo.Controls.Add(panel6);
             panelInfo.Controls.Add(label9);
             panelInfo.Location = new Point(1306, 45);
             panelInfo.Name = "panelInfo";
             panelInfo.Size = new Size(1098, 657);
             panelInfo.TabIndex = 24;
             panelInfo.Visible = false;
+            // 
+            // projectDescLabel
+            // 
+            projectDescLabel.Font = new Font("Tw Cen MT", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            projectDescLabel.ForeColor = SystemColors.ControlLightLight;
+            projectDescLabel.Location = new Point(24, 129);
+            projectDescLabel.Name = "projectDescLabel";
+            projectDescLabel.Size = new Size(427, 148);
+            projectDescLabel.TabIndex = 7;
+            projectDescLabel.Text = resources.GetString("projectDescLabel.Text");
+            // 
+            // projectVersionLabel
+            // 
+            projectVersionLabel.AutoSize = true;
+            projectVersionLabel.Font = new Font("Tw Cen MT", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            projectVersionLabel.ForeColor = SystemColors.ControlLightLight;
+            projectVersionLabel.Location = new Point(24, 92);
+            projectVersionLabel.Name = "projectVersionLabel";
+            projectVersionLabel.Size = new Size(44, 19);
+            projectVersionLabel.TabIndex = 6;
+            projectVersionLabel.Text = "0.0.1";
+            // 
+            // projectNameLabel
+            // 
+            projectNameLabel.AutoSize = true;
+            projectNameLabel.Font = new Font("Tw Cen MT", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            projectNameLabel.ForeColor = SystemColors.ControlLightLight;
+            projectNameLabel.Location = new Point(21, 57);
+            projectNameLabel.Name = "projectNameLabel";
+            projectNameLabel.Size = new Size(111, 34);
+            projectNameLabel.TabIndex = 5;
+            projectNameLabel.Text = "Project1";
+            // 
+            // panel6
+            // 
+            panel6.BackColor = Color.FromArgb(21, 21, 28);
+            panel6.Controls.Add(label16);
+            panel6.Controls.Add(projectDescBox);
+            panel6.Controls.Add(projectVersionBox);
+            panel6.Controls.Add(label13);
+            panel6.Controls.Add(projectNameBox);
+            panel6.Controls.Add(label12);
+            panel6.Location = new Point(13, 301);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(1062, 347);
+            panel6.TabIndex = 1;
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Font = new Font("Tw Cen MT", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label16.ForeColor = SystemColors.ControlLightLight;
+            label16.Location = new Point(26, 114);
+            label16.Name = "label16";
+            label16.Size = new Size(126, 19);
+            label16.TabIndex = 6;
+            label16.Text = "Project description:";
+            // 
+            // projectDescBox
+            // 
+            projectDescBox.Location = new Point(186, 116);
+            projectDescBox.Name = "projectDescBox";
+            projectDescBox.Size = new Size(277, 149);
+            projectDescBox.TabIndex = 5;
+            projectDescBox.Text = resources.GetString("projectDescBox.Text");
+            projectDescBox.TextChanged += projectDescBox_TextChanged;
+            // 
+            // projectVersionBox
+            // 
+            projectVersionBox.AsciiOnly = true;
+            projectVersionBox.Culture = new System.Globalization.CultureInfo("en-PN");
+            projectVersionBox.Font = new Font("Tw Cen MT", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            projectVersionBox.Location = new Point(187, 72);
+            projectVersionBox.Mask = "0.0.0";
+            projectVersionBox.Name = "projectVersionBox";
+            projectVersionBox.Size = new Size(100, 28);
+            projectVersionBox.TabIndex = 4;
+            projectVersionBox.Text = "001";
+            projectVersionBox.MaskInputRejected += projectVersionBox_MaskInputRejected;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Font = new Font("Tw Cen MT", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label13.ForeColor = SystemColors.ControlLightLight;
+            label13.Location = new Point(50, 77);
+            label13.Name = "label13";
+            label13.Size = new Size(102, 19);
+            label13.TabIndex = 2;
+            label13.Text = "Project version:";
+            // 
+            // projectNameBox
+            // 
+            projectNameBox.Font = new Font("Tw Cen MT", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            projectNameBox.Location = new Point(187, 27);
+            projectNameBox.Name = "projectNameBox";
+            projectNameBox.Size = new Size(276, 28);
+            projectNameBox.TabIndex = 1;
+            projectNameBox.Text = "Project1";
+            projectNameBox.TextChanged += projectNameBox_TextChanged;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Font = new Font("Tw Cen MT", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label12.ForeColor = SystemColors.ControlLightLight;
+            label12.Location = new Point(58, 32);
+            label12.Name = "label12";
+            label12.Size = new Size(94, 19);
+            label12.TabIndex = 0;
+            label12.Text = "Project name:";
             // 
             // label9
             // 
@@ -534,23 +699,63 @@
             label9.TabIndex = 0;
             label9.Text = "PROJECT INFO";
             // 
-            // label11
+            // panelFile
             // 
-            label11.AutoSize = true;
-            label11.Font = new Font("Tw Cen MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label11.ForeColor = SystemColors.ControlLightLight;
-            label11.Location = new Point(12, 11);
-            label11.Name = "label11";
-            label11.Size = new Size(106, 24);
-            label11.TabIndex = 24;
-            label11.Text = "Troijan.exe";
+            panelFile.Controls.Add(loadButton);
+            panelFile.Controls.Add(saveButton);
+            panelFile.Controls.Add(filePathTextBox);
+            panelFile.Controls.Add(label15);
+            panelFile.Location = new Point(3514, 45);
+            panelFile.Name = "panelFile";
+            panelFile.Size = new Size(1098, 657);
+            panelFile.TabIndex = 26;
+            panelFile.Visible = false;
+            // 
+            // loadButton
+            // 
+            loadButton.Location = new Point(147, 100);
+            loadButton.Name = "loadButton";
+            loadButton.Size = new Size(120, 44);
+            loadButton.TabIndex = 3;
+            loadButton.Text = "LOAD";
+            loadButton.UseVisualStyleBackColor = true;
+            loadButton.Click += LoadButton_Click;
+            // 
+            // saveButton
+            // 
+            saveButton.Location = new Point(21, 100);
+            saveButton.Name = "saveButton";
+            saveButton.Size = new Size(120, 44);
+            saveButton.TabIndex = 2;
+            saveButton.Text = "SAVE";
+            saveButton.UseVisualStyleBackColor = true;
+            saveButton.Click += SaveButton_Click;
+            // 
+            // filePathTextBox
+            // 
+            filePathTextBox.Location = new Point(21, 58);
+            filePathTextBox.Name = "filePathTextBox";
+            filePathTextBox.Size = new Size(271, 23);
+            filePathTextBox.TabIndex = 1;
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Font = new Font("Tw Cen MT", 12F);
+            label15.ForeColor = SystemColors.ControlLightLight;
+            label15.Location = new Point(16, 20);
+            label15.Name = "label15";
+            label15.Size = new Size(33, 19);
+            label15.TabIndex = 0;
+            label15.Text = "FILE";
             // 
             // Dashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(16, 17, 23);
-            ClientSize = new Size(3543, 700);
+            ClientSize = new Size(3860, 700);
+            Controls.Add(panelFile);
             Controls.Add(panelUsers);
             Controls.Add(panelInfo);
             Controls.Add(panelRequirements);
@@ -574,10 +779,15 @@
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
             panelRequirements.ResumeLayout(false);
+            panelRequirements.PerformLayout();
             panelUsers.ResumeLayout(false);
             panelUsers.PerformLayout();
             panelInfo.ResumeLayout(false);
             panelInfo.PerformLayout();
+            panel6.ResumeLayout(false);
+            panel6.PerformLayout();
+            panelFile.ResumeLayout(false);
+            panelFile.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -621,5 +831,22 @@
         private Panel panelUsers;
         private Label label10;
         private Label label11;
+        private Panel panel6;
+        private Label label12;
+        private Label projectVersionLabel;
+        private Label projectNameLabel;
+        private MaskedTextBox projectVersionBox;
+        private Label label13;
+        private TextBox projectNameBox;
+        private Label projectDescLabel;
+        private Label label16;
+        private RichTextBox projectDescBox;
+        private Panel panel7;
+        private Label label14;
+        private Panel panelFile;
+        private Label label15;
+        private TextBox filePathTextBox;
+        private Button loadButton;
+        private Button saveButton;
     }
 }
