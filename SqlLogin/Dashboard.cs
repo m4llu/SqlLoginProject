@@ -29,7 +29,6 @@ namespace SqlLogin
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None;
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 40, 40));
-            panel5.BringToFront();
             flowLayoutPanel1.VerticalScroll.Visible = true;
         }
 
