@@ -39,11 +39,10 @@
             flowLayoutPanel1 = new FlowLayoutPanel();
             taskHeightInput = new TextBox();
             taskSizeInput = new TextBox();
-            panel3 = new Panel();
-            button8 = new Button();
-            label1 = new Label();
+            button7 = new Button();
+            panel5 = new Panel();
             panel1.SuspendLayout();
-            flowLayoutPanel1.SuspendLayout();
+            panel5.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -173,7 +172,6 @@
             // 
             flowLayoutPanel1.AutoScroll = true;
             flowLayoutPanel1.BackColor = Color.FromArgb(40, 52, 65);
-            flowLayoutPanel1.Controls.Add(panel3);
             flowLayoutPanel1.Location = new Point(243, 232);
             flowLayoutPanel1.Margin = new Padding(3, 4, 3, 4);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -183,7 +181,7 @@
             // 
             // taskHeightInput
             // 
-            taskHeightInput.Location = new Point(243, 142);
+            taskHeightInput.Location = new Point(14, 72);
             taskHeightInput.Margin = new Padding(3, 4, 3, 4);
             taskHeightInput.Name = "taskHeightInput";
             taskHeightInput.Size = new Size(140, 27);
@@ -191,38 +189,40 @@
             // 
             // taskSizeInput
             // 
-            taskSizeInput.Location = new Point(243, 107);
+            taskSizeInput.Location = new Point(14, 20);
             taskSizeInput.Margin = new Padding(3, 4, 3, 4);
             taskSizeInput.Name = "taskSizeInput";
             taskSizeInput.Size = new Size(140, 27);
             taskSizeInput.TabIndex = 9;
             // 
-            // panel3
+            // button7
             // 
-            panel3.BackColor = Color.FromArgb(255, 255, 192);
-            panel3.Location = new Point(14, 16);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(250, 175);
-            panel3.TabIndex = 0;
+            button7.FlatAppearance.BorderColor = Color.FromArgb(24, 20, 54);
+            button7.FlatAppearance.BorderSize = 3;
+            button7.FlatAppearance.MouseDownBackColor = Color.Turquoise;
+            button7.FlatStyle = FlatStyle.Flat;
+            button7.ForeColor = SystemColors.ButtonHighlight;
+            button7.Location = new Point(15, 476);
+            button7.Margin = new Padding(3, 4, 3, 4);
+            button7.Name = "button7";
+            button7.Size = new Size(229, 81);
+            button7.TabIndex = 8;
+            button7.Text = "Add";
+            button7.UseVisualStyleBackColor = true;
+            button7.Click += button7_Click;
             // 
-            // button8
+            // panel5
             // 
-            button8.Location = new Point(243, 189);
-            button8.Name = "button8";
-            button8.Size = new Size(206, 36);
-            button8.TabIndex = 3;
-            button8.Text = "ADD";
-            button8.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.ForeColor = SystemColors.ControlLightLight;
-            label1.Location = new Point(243, 83);
-            label1.Name = "label1";
-            label1.Size = new Size(144, 20);
-            label1.TabIndex = 11;
-            label1.Text = "ADD REQUIREMENT";
+            panel5.Anchor = AnchorStyles.None;
+            panel5.Controls.Add(taskHeightInput);
+            panel5.Controls.Add(taskSizeInput);
+            panel5.Controls.Add(button7);
+            panel5.Location = new Point(897, 39);
+            panel5.Margin = new Padding(3, 4, 3, 4);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(382, 609);
+            panel5.TabIndex = 2;
+            panel5.Paint += panel5_Paint;
             // 
             // Dashboard
             // 
@@ -230,11 +230,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(46, 51, 72);
             ClientSize = new Size(1485, 933);
-            Controls.Add(label1);
-            Controls.Add(taskSizeInput);
-            Controls.Add(taskHeightInput);
-            Controls.Add(button8);
             Controls.Add(panel1);
+            Controls.Add(panel5);
             Controls.Add(flowLayoutPanel1);
             ForeColor = SystemColors.ControlText;
             FormBorderStyle = FormBorderStyle.None;
@@ -243,9 +240,9 @@
             RightToLeftLayout = true;
             Text = "Dashboard";
             panel1.ResumeLayout(false);
-            flowLayoutPanel1.ResumeLayout(false);
+            panel5.ResumeLayout(false);
+            panel5.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -261,8 +258,7 @@
         private FlowLayoutPanel flowLayoutPanel1;
         private TextBox taskSizeInput;
         private TextBox taskHeightInput;
-        private Panel panel3;
-        private Button button8;
-        private Label label1;
+        private Button button7;
+        private Panel panel5;
     }
 }

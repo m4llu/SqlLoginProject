@@ -59,14 +59,24 @@ namespace SqlLogin
 
             panel.Controls.Add(button);
             flowLayoutPanel1.Controls.Add(panel);
-    
+
 
 
         }
 
         private void panel5_Paint(object sender, PaintEventArgs e)
         {
-            
+
+        }
+
+        private void taskSizeInput_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void taskHeightInput_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
