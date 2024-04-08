@@ -32,6 +32,8 @@ namespace SqlLogin
             flowLayoutPanel1.VerticalScroll.Visible = true;
         }
 
+        Color lockedColor;
+
         private void button6_Click(object sender, EventArgs e)
         {
 
@@ -79,6 +81,7 @@ namespace SqlLogin
             panel.Controls.Add(titleLabel);
             panel.Controls.Add(contentLabel);
             panel.Controls.Add(button);
+            panel.BackColor = lockedColor;
             flowLayoutPanel1.Controls.Add(panel);
         }
 
@@ -98,6 +101,24 @@ namespace SqlLogin
         }
 
         private void taskContentBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
+        {
+            Bitmap pixelData = (Bitmap)pictureBox1.Image;
+            Color clr = pixelData.GetPixel(e.X, e.Y);
+            colorPreview.BackColor = clr;
+            lockedPreview.BackColor = lockedColor;
+        }
+
+        private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
+        {
+            lockedColor = colorPreview.BackColor;
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
 
         }

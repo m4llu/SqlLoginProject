@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             panel1 = new Panel();
             button6 = new Button();
             button5 = new Button();
@@ -46,7 +47,11 @@
             taskTitleBox = new TextBox();
             label2 = new Label();
             label1 = new Label();
+            pictureBox1 = new PictureBox();
+            colorPreview = new Panel();
+            lockedPreview = new Panel();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -185,7 +190,7 @@
             // 
             // taskHeightInput
             // 
-            taskHeightInput.Location = new Point(243, 189);
+            taskHeightInput.Location = new Point(243, 153);
             taskHeightInput.Margin = new Padding(3, 4, 3, 4);
             taskHeightInput.Name = "taskHeightInput";
             taskHeightInput.Size = new Size(140, 27);
@@ -193,7 +198,7 @@
             // 
             // taskSizeInput
             // 
-            taskSizeInput.Location = new Point(243, 137);
+            taskSizeInput.Location = new Point(243, 101);
             taskSizeInput.Margin = new Padding(3, 4, 3, 4);
             taskSizeInput.Name = "taskSizeInput";
             taskSizeInput.Size = new Size(140, 27);
@@ -206,10 +211,10 @@
             button7.FlatAppearance.MouseDownBackColor = Color.Turquoise;
             button7.FlatStyle = FlatStyle.Flat;
             button7.ForeColor = SystemColors.ButtonHighlight;
-            button7.Location = new Point(500, 131);
+            button7.Location = new Point(487, 178);
             button7.Margin = new Padding(3, 4, 3, 4);
             button7.Name = "button7";
-            button7.Size = new Size(229, 81);
+            button7.Size = new Size(226, 46);
             button7.TabIndex = 8;
             button7.Text = "Add";
             button7.UseVisualStyleBackColor = true;
@@ -219,7 +224,7 @@
             // 
             label4.AutoSize = true;
             label4.ForeColor = SystemColors.ControlLightLight;
-            label4.Location = new Point(389, 88);
+            label4.Location = new Point(389, 56);
             label4.Name = "label4";
             label4.Size = new Size(92, 20);
             label4.TabIndex = 16;
@@ -229,7 +234,7 @@
             // 
             label3.AutoSize = true;
             label3.ForeColor = SystemColors.ControlLightLight;
-            label3.Location = new Point(389, 38);
+            label3.Location = new Point(389, 7);
             label3.Name = "label3";
             label3.Size = new Size(69, 20);
             label3.TabIndex = 15;
@@ -237,7 +242,7 @@
             // 
             // taskContentBox
             // 
-            taskContentBox.Location = new Point(243, 85);
+            taskContentBox.Location = new Point(243, 53);
             taskContentBox.Margin = new Padding(3, 4, 3, 4);
             taskContentBox.Name = "taskContentBox";
             taskContentBox.Size = new Size(140, 27);
@@ -246,7 +251,7 @@
             // 
             // taskTitleBox
             // 
-            taskTitleBox.Location = new Point(243, 35);
+            taskTitleBox.Location = new Point(243, 4);
             taskTitleBox.Margin = new Padding(3, 4, 3, 4);
             taskTitleBox.Name = "taskTitleBox";
             taskTitleBox.Size = new Size(140, 27);
@@ -256,7 +261,7 @@
             // 
             label2.AutoSize = true;
             label2.ForeColor = SystemColors.ControlLightLight;
-            label2.Location = new Point(389, 192);
+            label2.Location = new Point(389, 156);
             label2.Name = "label2";
             label2.Size = new Size(85, 20);
             label2.TabIndex = 12;
@@ -266,11 +271,38 @@
             // 
             label1.AutoSize = true;
             label1.ForeColor = SystemColors.ControlLightLight;
-            label1.Location = new Point(389, 140);
+            label1.Location = new Point(389, 104);
             label1.Name = "label1";
             label1.Size = new Size(80, 20);
             label1.TabIndex = 11;
             label1.Text = "Task Width";
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(487, 4);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(226, 156);
+            pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
+            pictureBox1.TabIndex = 17;
+            pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
+            pictureBox1.MouseDown += pictureBox1_MouseDown;
+            pictureBox1.MouseMove += pictureBox1_MouseMove;
+            // 
+            // colorPreview
+            // 
+            colorPreview.Location = new Point(719, 4);
+            colorPreview.Name = "colorPreview";
+            colorPreview.Size = new Size(32, 156);
+            colorPreview.TabIndex = 18;
+            // 
+            // lockedPreview
+            // 
+            lockedPreview.Location = new Point(757, 4);
+            lockedPreview.Name = "lockedPreview";
+            lockedPreview.Size = new Size(32, 156);
+            lockedPreview.TabIndex = 19;
             // 
             // Dashboard
             // 
@@ -278,6 +310,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(46, 51, 72);
             ClientSize = new Size(1485, 933);
+            Controls.Add(lockedPreview);
+            Controls.Add(colorPreview);
+            Controls.Add(pictureBox1);
             Controls.Add(button7);
             Controls.Add(label4);
             Controls.Add(panel1);
@@ -294,8 +329,9 @@
             Margin = new Padding(3, 4, 3, 4);
             Name = "Dashboard";
             RightToLeftLayout = true;
-            Text = "Dashboard";
+            Text = ">";
             panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -320,5 +356,8 @@
         private TextBox taskTitleBox;
         private Label label2;
         private Label label1;
+        private PictureBox pictureBox1;
+        private Panel colorPreview;
+        private Panel lockedPreview;
     }
 }
