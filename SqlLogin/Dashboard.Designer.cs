@@ -51,6 +51,8 @@
             colorPreview = new Panel();
             dateTimePicker1 = new DateTimePicker();
             panel3 = new Panel();
+            label5 = new Label();
+            button8 = new Button();
             taskPreview = new Panel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -193,21 +195,23 @@
             // 
             // taskHeightInput
             // 
-            taskHeightInput.Location = new Point(26, 189);
+            taskHeightInput.Location = new Point(26, 215);
             taskHeightInput.Margin = new Padding(3, 4, 3, 4);
             taskHeightInput.Name = "taskHeightInput";
             taskHeightInput.Size = new Size(140, 27);
             taskHeightInput.TabIndex = 10;
             taskHeightInput.Text = "200";
+            taskHeightInput.TextChanged += taskHeightInput_TextChanged;
             // 
             // taskSizeInput
             // 
-            taskSizeInput.Location = new Point(26, 137);
+            taskSizeInput.Location = new Point(26, 167);
             taskSizeInput.Margin = new Padding(3, 4, 3, 4);
             taskSizeInput.Name = "taskSizeInput";
             taskSizeInput.Size = new Size(140, 27);
             taskSizeInput.TabIndex = 9;
             taskSizeInput.Text = "200";
+            taskSizeInput.TextChanged += taskSizeInput_TextChanged;
             // 
             // button7
             // 
@@ -217,7 +221,7 @@
             button7.FlatAppearance.MouseDownBackColor = Color.Turquoise;
             button7.FlatStyle = FlatStyle.Flat;
             button7.ForeColor = SystemColors.ButtonHighlight;
-            button7.Location = new Point(270, 214);
+            button7.Location = new Point(293, 244);
             button7.Margin = new Padding(3, 4, 3, 4);
             button7.Name = "button7";
             button7.Size = new Size(264, 46);
@@ -230,7 +234,7 @@
             // 
             label4.AutoSize = true;
             label4.ForeColor = SystemColors.ControlLightLight;
-            label4.Location = new Point(172, 92);
+            label4.Location = new Point(181, 122);
             label4.Name = "label4";
             label4.Size = new Size(92, 20);
             label4.TabIndex = 16;
@@ -240,7 +244,7 @@
             // 
             label3.AutoSize = true;
             label3.ForeColor = SystemColors.ControlLightLight;
-            label3.Location = new Point(172, 43);
+            label3.Location = new Point(181, 73);
             label3.Name = "label3";
             label3.Size = new Size(69, 20);
             label3.TabIndex = 15;
@@ -248,7 +252,7 @@
             // 
             // taskContentBox
             // 
-            taskContentBox.Location = new Point(26, 89);
+            taskContentBox.Location = new Point(26, 119);
             taskContentBox.Margin = new Padding(3, 4, 3, 4);
             taskContentBox.Name = "taskContentBox";
             taskContentBox.Size = new Size(140, 27);
@@ -257,17 +261,18 @@
             // 
             // taskTitleBox
             // 
-            taskTitleBox.Location = new Point(26, 40);
+            taskTitleBox.Location = new Point(26, 70);
             taskTitleBox.Margin = new Padding(3, 4, 3, 4);
             taskTitleBox.Name = "taskTitleBox";
             taskTitleBox.Size = new Size(140, 27);
             taskTitleBox.TabIndex = 13;
+            taskTitleBox.TextChanged += taskTitleBox_TextChanged;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.ForeColor = SystemColors.ControlLightLight;
-            label2.Location = new Point(172, 192);
+            label2.Location = new Point(181, 218);
             label2.Name = "label2";
             label2.Size = new Size(85, 20);
             label2.TabIndex = 12;
@@ -277,7 +282,7 @@
             // 
             label1.AutoSize = true;
             label1.ForeColor = SystemColors.ControlLightLight;
-            label1.Location = new Point(172, 140);
+            label1.Location = new Point(181, 170);
             label1.Name = "label1";
             label1.Size = new Size(80, 20);
             label1.TabIndex = 11;
@@ -286,7 +291,7 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(270, 40);
+            pictureBox1.Location = new Point(293, 73);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(226, 156);
             pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
@@ -298,22 +303,25 @@
             // 
             // colorPreview
             // 
-            colorPreview.Location = new Point(502, 40);
+            colorPreview.Location = new Point(525, 73);
             colorPreview.Name = "colorPreview";
             colorPreview.Size = new Size(32, 156);
             colorPreview.TabIndex = 18;
             // 
             // dateTimePicker1
             // 
-            dateTimePicker1.Location = new Point(26, 233);
+            dateTimePicker1.Location = new Point(26, 263);
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(239, 27);
             dateTimePicker1.TabIndex = 19;
             // 
             // panel3
             // 
+            panel3.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             panel3.BackColor = Color.FromArgb(24, 30, 54);
             panel3.BorderStyle = BorderStyle.FixedSingle;
+            panel3.Controls.Add(label5);
+            panel3.Controls.Add(button8);
             panel3.Controls.Add(taskPreview);
             panel3.Controls.Add(pictureBox1);
             panel3.Controls.Add(dateTimePicker1);
@@ -327,17 +335,42 @@
             panel3.Controls.Add(taskTitleBox);
             panel3.Controls.Add(taskContentBox);
             panel3.Controls.Add(label3);
-            panel3.Location = new Point(291, 64);
+            panel3.Location = new Point(243, 12);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1061, 475);
+            panel3.Padding = new Padding(50);
+            panel3.Size = new Size(908, 40);
             panel3.TabIndex = 20;
             panel3.MouseDown += panel3_MouseDown;
             panel3.MouseMove += panel3_MouseMove;
             panel3.MouseUp += panel3_MouseUp;
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.ForeColor = SystemColors.ControlLightLight;
+            label5.Location = new Point(42, 9);
+            label5.Name = "label5";
+            label5.Size = new Size(89, 20);
+            label5.TabIndex = 22;
+            label5.Text = "Task Creator";
+            // 
+            // button8
+            // 
+            button8.FlatAppearance.BorderSize = 0;
+            button8.FlatStyle = FlatStyle.Flat;
+            button8.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button8.ForeColor = SystemColors.ControlLightLight;
+            button8.Location = new Point(-1, 3);
+            button8.Name = "button8";
+            button8.Size = new Size(37, 30);
+            button8.TabIndex = 21;
+            button8.Text = "🢃";
+            button8.UseVisualStyleBackColor = true;
+            button8.Click += button8_Click;
+            // 
             // taskPreview
             // 
-            taskPreview.Location = new Point(551, 43);
+            taskPreview.Location = new Point(603, 73);
             taskPreview.Name = "taskPreview";
             taskPreview.Size = new Size(250, 217);
             taskPreview.TabIndex = 20;
@@ -389,5 +422,7 @@
         private DateTimePicker dateTimePicker1;
         private Panel panel3;
         private Panel taskPreview;
+        private Button button8;
+        private Label label5;
     }
 }

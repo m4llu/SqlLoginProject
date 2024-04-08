@@ -59,6 +59,7 @@ namespace SqlLogin
 
             Panel panel = new Panel();
             panel.Size = new Size(panelWidth, panelHeight);
+            taskPreview.Size = new Size(panelWidth, panelHeight);
             panel.BackColor = Color.Black;
 
             Button button = new Button();
@@ -68,13 +69,15 @@ namespace SqlLogin
             Label titleLabel = new Label();
             titleLabel.ForeColor = Color.White;
             titleLabel.Text = taskTitleBox.Text;
-            titleLabel.AutoSize = true; // Set to true to automatically adjust label size based on content
+            titleLabel.AutoSize = false; // Set to false to manually adjust label size
+            titleLabel.Size = new Size(panelWidth - 20, 30); // Adjust the height and width as needed
             titleLabel.Location = new Point(10, 10);
 
             Label contentLabel = new Label();
             contentLabel.ForeColor = Color.White;
             contentLabel.Text = taskContentBox.Text;
-            contentLabel.AutoSize = true; // Set to true to automatically adjust label size based on content
+            contentLabel.AutoSize = false; // Set to false to manually adjust label size
+            contentLabel.Size = new Size(panelWidth - 20, panelHeight - titleLabel.Bottom - 50); // Adjust the height and width as needed
             contentLabel.Location = new Point(10, titleLabel.Bottom + 5);
 
             panel.Controls.Add(titleLabel);
@@ -96,28 +99,11 @@ namespace SqlLogin
             }
         }
 
+
         private void button7_Click(object sender, EventArgs e)
         {
             // Update the task preview and add it to flowLayoutPanel1
             UpdateTaskPreview(true);
-        }
-
-        private void taskSizeInput_TextChanged(object sender, EventArgs e)
-        {
-            // Update the task preview when width input changes
-            UpdateTaskPreview(false);
-        }
-
-        private void taskHeightInput_TextChanged(object sender, EventArgs e)
-        {
-            // Update the task preview when height input changes
-            UpdateTaskPreview(false);
-        }
-
-        private void taskTitleBox_TextChanged(object sender, EventArgs e)
-        {
-            // Update the task preview when title input changes
-            UpdateTaskPreview(false);
         }
 
         private void taskContentBox_TextChanged(object sender, EventArgs e)
@@ -153,9 +139,16 @@ namespace SqlLogin
         }
         private Point mouseOffset;
         private bool isMouseDown = false;
+        private bool isPanelMinimized = true;
+        private int originalPanelHeight;
+        private bool isLocked = true;
+        
+
+        
+
         private void panel3_MouseMove(object sender, MouseEventArgs e)
         {
-            if (isMouseDown)
+            if (isMouseDown && !isLocked)
             {
                 // Calculate the new location of the panel
                 Point newLocation = this.PointToClient(MousePosition);
@@ -182,6 +175,43 @@ namespace SqlLogin
                 // Capture the mouse and calculate the offset
                 mouseOffset = new Point(e.X, e.Y);
                 isMouseDown = true;
+            }
+        }
+
+        private void taskTitleBox_TextChanged(object sender, EventArgs e)
+        {
+            UpdateTaskPreview(false);
+        }
+
+        private void taskSizeInput_TextChanged(object sender, EventArgs e)
+        {
+            UpdateTaskPreview(false);
+        }
+
+        private void taskHeightInput_TextChanged(object sender, EventArgs e)
+        {
+            UpdateTaskPreview(false);
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            if (isPanelMinimized)
+            {
+                // Restore panel to its original size
+                panel3.Height = originalPanelHeight;
+                isPanelMinimized = false;
+                panel3.AutoSize = true; // Set AutoSize to true when panel is maximized
+                isLocked = false;
+                button8.Text = "🢃";
+            }
+            else
+            {
+                isPanelMinimized = true;
+                panel3.AutoSize = false; // Set AutoSize to false when panel is minimized
+                panel3.Height = 40;
+                isLocked = true;
+                panel3.Location = new Point(243, 12);
+                button8.Text = "🢁";
             }
         }
     }
