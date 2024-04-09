@@ -11,6 +11,8 @@ using System.Runtime.InteropServices;
 using System.IO;
 using System.Text.Json;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using System.Drawing.Text;
+using RequirementManagementSystem;
 
 namespace SqlLogin
 {
@@ -27,13 +29,29 @@ namespace SqlLogin
             int nHeightEllipse // height of ellipse  
         );
 
+        private void AddExampleRequirements()
+        {
+            // Create some example requirements
+            Requirement requirement1 = new Requirement("Requirement 1", 80, 50, "High", "John Doe", "v1.0", "Feature", 1);
+            Requirement requirement2 = new Requirement("Requirement 2", 60, 30, "Medium", "Jane Smith", "v2.0", "Bug", 2);
+            Requirement requirement3 = new Requirement("Requirement 3", 90, 70, "High", "Alice Johnson", "v1.1", "Enhancement", 3);
+
+            // Add requirements to the flow layout panel
+            flowLayoutPanel2.Controls.Add(requirement1);
+            flowLayoutPanel2.Controls.Add(requirement2);
+            flowLayoutPanel2.Controls.Add(requirement3);
+        }
+
         public Dashboard()
         {
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None;
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 40, 40));
             flowLayoutPanel1.VerticalScroll.Visible = true;
+            AddExampleRequirements();
         }
+
+ 
 
 
 
@@ -345,8 +363,8 @@ namespace SqlLogin
 
         private void refreshProjectInfo()
         {
-            projectName = projectNameBox.Text; 
-            projectVersion = projectVersionBox.Text; 
+            projectName = projectNameBox.Text;
+            projectVersion = projectVersionBox.Text;
             projectDesc = projectDescBox.Text;
 
             projectNameLabel.Text = projectNameBox.Text;
@@ -455,6 +473,23 @@ namespace SqlLogin
                 projectDescLabel.Text = projectDescBox.Text;
             }
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label17_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }
 

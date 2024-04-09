@@ -61,6 +61,7 @@
             taskPreview = new Panel();
             button9 = new Button();
             panel4 = new Panel();
+            button1 = new Button();
             label11 = new Label();
             panel5 = new Panel();
             panelRequirements = new Panel();
@@ -79,11 +80,14 @@
             projectNameBox = new TextBox();
             label12 = new Label();
             label9 = new Label();
-            panelFile = new Panel();
             loadButton = new Button();
             saveButton = new Button();
             filePathTextBox = new TextBox();
+            label17 = new Label();
             label15 = new Label();
+            flowLayoutPanel2 = new FlowLayoutPanel();
+            label18 = new Label();
+            panelFile = new Panel();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panelInformation.SuspendLayout();
@@ -171,7 +175,7 @@
             button4.Name = "button4";
             button4.Size = new Size(200, 61);
             button4.TabIndex = 5;
-            button4.Text = "FILE";
+            button4.Text = "REQUIREMENTS MANAGER";
             button4.UseVisualStyleBackColor = false;
             button4.Click += button4_Click;
             // 
@@ -207,7 +211,7 @@
             btnRequirements.Name = "btnRequirements";
             btnRequirements.Size = new Size(200, 61);
             btnRequirements.TabIndex = 3;
-            btnRequirements.Text = "REQUIREMENTS";
+            btnRequirements.Text = "REQUIREMENT WALL";
             btnRequirements.UseVisualStyleBackColor = false;
             btnRequirements.Click += button2_Click;
             // 
@@ -478,11 +482,11 @@
             // 
             // button9
             // 
-            button9.BackColor = Color.FromArgb(13, 17, 22);
+            button9.BackColor = Color.FromArgb(32, 39, 52);
             button9.FlatAppearance.BorderSize = 0;
             button9.FlatStyle = FlatStyle.Flat;
             button9.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button9.ForeColor = SystemColors.ControlLightLight;
+            button9.ForeColor = Color.FromArgb(255, 192, 192);
             button9.Location = new Point(1250, 2);
             button9.Name = "button9";
             button9.Size = new Size(50, 41);
@@ -494,6 +498,7 @@
             // panel4
             // 
             panel4.BackColor = Color.FromArgb(28, 29, 42);
+            panel4.Controls.Add(button1);
             panel4.Controls.Add(label11);
             panel4.Controls.Add(panel5);
             panel4.Controls.Add(button9);
@@ -505,6 +510,21 @@
             panel4.MouseMove += panel4_MouseMove;
             panel4.MouseUp += panel4_MouseUp;
             // 
+            // button1
+            // 
+            button1.BackColor = Color.FromArgb(13, 17, 22);
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button1.ForeColor = Color.FromArgb(255, 192, 192);
+            button1.Location = new Point(1199, 0);
+            button1.Name = "button1";
+            button1.Size = new Size(53, 43);
+            button1.TabIndex = 25;
+            button1.Text = "-";
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click_1;
+            // 
             // label11
             // 
             label11.AutoSize = true;
@@ -515,6 +535,7 @@
             label11.Size = new Size(506, 24);
             label11.TabIndex = 24;
             label11.Text = "Kiveriö Project Management Tool 1.0.2 Enterprise Edition ";
+            label11.Click += label11_Click;
             // 
             // panel5
             // 
@@ -525,6 +546,7 @@
             // 
             // panelRequirements
             // 
+            panelRequirements.Controls.Add(label17);
             panelRequirements.Controls.Add(label14);
             panelRequirements.Controls.Add(panel3);
             panelRequirements.Controls.Add(flowLayoutPanel1);
@@ -546,7 +568,10 @@
             // 
             // panelUsers
             // 
+            panelUsers.Controls.Add(loadButton);
             panelUsers.Controls.Add(label10);
+            panelUsers.Controls.Add(saveButton);
+            panelUsers.Controls.Add(filePathTextBox);
             panelUsers.Location = new Point(2410, 45);
             panelUsers.Name = "panelUsers";
             panelUsers.Size = new Size(1098, 657);
@@ -560,9 +585,9 @@
             label10.ForeColor = SystemColors.ControlLightLight;
             label10.Location = new Point(16, 20);
             label10.Name = "label10";
-            label10.Size = new Size(112, 19);
+            label10.Size = new Size(45, 19);
             label10.TabIndex = 0;
-            label10.Text = "PROJECT USERS";
+            label10.Text = "TEAM";
             // 
             // panelInfo
             // 
@@ -699,21 +724,9 @@
             label9.TabIndex = 0;
             label9.Text = "PROJECT INFO";
             // 
-            // panelFile
-            // 
-            panelFile.Controls.Add(loadButton);
-            panelFile.Controls.Add(saveButton);
-            panelFile.Controls.Add(filePathTextBox);
-            panelFile.Controls.Add(label15);
-            panelFile.Location = new Point(3514, 45);
-            panelFile.Name = "panelFile";
-            panelFile.Size = new Size(1098, 657);
-            panelFile.TabIndex = 26;
-            panelFile.Visible = false;
-            // 
             // loadButton
             // 
-            loadButton.Location = new Point(147, 100);
+            loadButton.Location = new Point(818, 560);
             loadButton.Name = "loadButton";
             loadButton.Size = new Size(120, 44);
             loadButton.TabIndex = 3;
@@ -723,7 +736,7 @@
             // 
             // saveButton
             // 
-            saveButton.Location = new Point(21, 100);
+            saveButton.Location = new Point(692, 560);
             saveButton.Name = "saveButton";
             saveButton.Size = new Size(120, 44);
             saveButton.TabIndex = 2;
@@ -733,21 +746,61 @@
             // 
             // filePathTextBox
             // 
-            filePathTextBox.Location = new Point(21, 58);
+            filePathTextBox.Location = new Point(692, 518);
             filePathTextBox.Name = "filePathTextBox";
             filePathTextBox.Size = new Size(271, 23);
             filePathTextBox.TabIndex = 1;
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Font = new Font("Tw Cen MT", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label17.ForeColor = SystemColors.ControlLightLight;
+            label17.Location = new Point(16, 68);
+            label17.Name = "label17";
+            label17.Size = new Size(360, 19);
+            label17.TabIndex = 22;
+            label17.Text = "COLLECT THE REQUIREMENTS HERE WITH YOUR TEAM";
+            label17.Click += label17_Click;
             // 
             // label15
             // 
             label15.AutoSize = true;
             label15.Font = new Font("Tw Cen MT", 12F);
             label15.ForeColor = SystemColors.ControlLightLight;
-            label15.Location = new Point(16, 20);
+            label15.Location = new Point(23, 18);
             label15.Name = "label15";
-            label15.Size = new Size(33, 19);
+            label15.Size = new Size(176, 19);
             label15.TabIndex = 0;
-            label15.Text = "FILE";
+            label15.Text = "REQUIREMENT MANAGER";
+            // 
+            // flowLayoutPanel2
+            // 
+            flowLayoutPanel2.Location = new Point(33, 115);
+            flowLayoutPanel2.Name = "flowLayoutPanel2";
+            flowLayoutPanel2.Size = new Size(776, 512);
+            flowLayoutPanel2.TabIndex = 1;
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Font = new Font("Tw Cen MT", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label18.ForeColor = SystemColors.ControlLightLight;
+            label18.Location = new Point(262, 18);
+            label18.Name = "label18";
+            label18.Size = new Size(0, 19);
+            label18.TabIndex = 23;
+            // 
+            // panelFile
+            // 
+            panelFile.Controls.Add(label18);
+            panelFile.Controls.Add(flowLayoutPanel2);
+            panelFile.Controls.Add(label15);
+            panelFile.Location = new Point(2631, 22);
+            panelFile.Name = "panelFile";
+            panelFile.Size = new Size(1098, 657);
+            panelFile.TabIndex = 26;
+            panelFile.Visible = false;
             // 
             // Dashboard
             // 
@@ -843,10 +896,14 @@
         private RichTextBox projectDescBox;
         private Panel panel7;
         private Label label14;
-        private Panel panelFile;
-        private Label label15;
         private TextBox filePathTextBox;
         private Button loadButton;
         private Button saveButton;
+        private Button button1;
+        private Label label17;
+        private Label label15;
+        private FlowLayoutPanel flowLayoutPanel2;
+        private Label label18;
+        private Panel panelFile;
     }
 }
