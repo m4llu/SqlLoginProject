@@ -13,6 +13,7 @@ using System.Text.Json;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using System.Drawing.Text;
 using RequirementManagementSystem;
+using Microsoft.Data.SqlClient;
 
 namespace SqlLogin
 {
@@ -77,7 +78,14 @@ namespace SqlLogin
         {
 
         }
-
+        public class Task
+        {
+            public int TaskWidth { get; set; }
+            public int TaskHeight { get; set; }
+            public string TaskTitle { get; set; }
+            public string Color { get; set; }
+            public DateTime TaskDate { get; set; }
+        }
         private void UpdateTaskPreview(bool addToFlowLayoutPanel)
         {
             string width = taskSizeInput.Text;
@@ -91,14 +99,14 @@ namespace SqlLogin
                 return;
             }
 
-            Panel panel = new Panel();
-            panel.Size = new Size(panelWidth, panelHeight);
+            Panel previewPanel = new Panel();
+            previewPanel.Size = new Size(panelWidth, panelHeight);
             taskPreview.Size = new Size(panelWidth, panelHeight);
-            panel.BackColor = Color.Black;
+            previewPanel.BackColor = Color.Black;
 
             Button button = new Button();
             button.Text = "Click Me";
-            button.Location = new Point(10, panel.Height - button.Height - 10); // Align button to bottom-left corner
+            button.Location = new Point(10, previewPanel.Height - button.Height - 10); // Align button to bottom-left corner
 
             Label titleLabel = new Label();
             titleLabel.ForeColor = Color.White;
@@ -115,23 +123,141 @@ namespace SqlLogin
             contentLabel.Size = new Size(panelWidth - 20, panelHeight - titleLabel.Bottom - 50); // Adjust the height and width as needed
             contentLabel.Location = new Point(10, titleLabel.Bottom + 5);
 
-            panel.Controls.Add(titleLabel);
-            panel.Controls.Add(contentLabel);
-            panel.Controls.Add(button);
-            panel.BackColor = lockedColor;
-            panel.Width += 15;
+            previewPanel.Controls.Add(titleLabel);
+            previewPanel.Controls.Add(contentLabel);
+            previewPanel.Controls.Add(button);
+            previewPanel.BackColor = lockedColor;
+            previewPanel.Width += 15;
 
             // Clear previous controls from the panel
             taskPreview.Controls.Clear();
 
             // Add the updated panel to taskPreview
-            taskPreview.Controls.Add(panel);
+            taskPreview.Controls.Add(previewPanel);
 
             if (addToFlowLayoutPanel)
             {
-                // Add the updated panel to flowLayoutPanel1
-                flowLayoutPanel1.Controls.Add(panel);
+                   int taskHeight = Convert.ToInt32(height);
+                int taskWidth = Convert.ToInt32(width);
+                string taskTitle = taskTitleBox.Text;
+                string color = lockedColor.ToString();
+                DateTime taskDate = dateTimePicker1.Value;
+
+                // SQL query to insert task details into the database
+                string query = "INSERT INTO tasks (task_height, task_width, task_title, color, task_date) " +
+                               "VALUES (@TaskHeight, @TaskWidth, @TaskTitle, @Color, @TaskDate)";
+
+                // Database connection string
+                string connectionString = "Server=localhost;Database=db1;Trusted_Connection=True;TrustServerCertificate=True;";
+
+                // Establish database connection
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    // Create SQL command
+                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    {
+                        // Add parameters to the SQL command
+                        cmd.Parameters.AddWithValue("@TaskHeight", taskHeight);
+                        cmd.Parameters.AddWithValue("@TaskWidth", taskWidth);
+                        cmd.Parameters.AddWithValue("@TaskTitle", taskTitle);
+                        cmd.Parameters.AddWithValue("@Color", color);
+                        cmd.Parameters.AddWithValue("@TaskDate", taskDate);
+
+                        // Open database connection
+                        connection.Open();
+
+                        // Execute SQL command
+                        int result = cmd.ExecuteNonQuery();
+
+                        // Check if the task was successfully saved
+                        if (result > 0)
+                        {
+                            MessageBox.Show("Task saved successfully");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Failed to save task");
+                        }
+                    }
+                }
+                // Fetch tasks from the database
+                List<Task> tasks = GetTasksFromDatabase();
+
+                // Clear existing controls from flowLayoutPanel1
+                flowLayoutPanel1.Controls.Clear();
+                // Get task details from UI
+             
+                // Create and add panels for each task
+                foreach (Task task in tasks)
+                {
+                    Panel panel = CreateTaskPanel(task);
+                    flowLayoutPanel1.Controls.Add(panel);
+                }
             }
+        }
+
+        private List<Task> GetTasksFromDatabase()
+        {
+            List<Task> tasks = new List<Task>();
+
+            // SQL query to select tasks from the database
+            string query = "SELECT * FROM tasks";
+
+            // Database connection string
+            string connectionString = "Server=localhost;Database=db1;Trusted_Connection=True;TrustServerCertificate=True;";
+
+            // Establish database connection
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                // Create SQL command
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    // Open database connection
+                    connection.Open();
+
+                    // Execute SQL command and read tasks from the database
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Task task = new Task
+                            {
+                                TaskHeight = Convert.ToInt32(reader["task_height"]),
+                                TaskWidth = Convert.ToInt32(reader["task_width"]),
+                                TaskTitle = reader["task_title"].ToString(),
+                                Color = reader["color"].ToString(),
+                                TaskDate = Convert.ToDateTime(reader["task_date"])
+                            };
+
+                            tasks.Add(task);
+                        }
+                    }
+                }
+            }
+
+            return tasks;
+        }
+
+        private Panel CreateTaskPanel(Task task)
+        {
+            Panel panel = new Panel();
+            panel.Size = new Size(task.TaskWidth, task.TaskHeight);
+            panel.BackColor = Color.FromName(task.Color);
+
+            Label titleLabel = new Label();
+            titleLabel.ForeColor = Color.White;
+            titleLabel.Text = task.TaskTitle;
+            titleLabel.Font = new Font(titleLabel.Font, FontStyle.Bold);
+            titleLabel.AutoSize = false;
+            titleLabel.Size = new Size(panel.Width - 20, 30);
+            titleLabel.Location = new Point(10, 10);
+
+            // Add other controls like content label, button, etc. as needed
+
+            panel.Controls.Add(titleLabel);
+            // Add other controls to the panel
+
+            return panel;
         }
 
 
@@ -139,6 +265,7 @@ namespace SqlLogin
         {
             // Update the task preview and add it to flowLayoutPanel1
             UpdateTaskPreview(true);
+
         }
 
         private void taskContentBox_TextChanged(object sender, EventArgs e)

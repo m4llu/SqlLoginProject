@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Configuration;
 
 namespace SqlLogin
 {
@@ -6,46 +7,21 @@ namespace SqlLogin
     {
         public DbSet<TaskItem> Tasks { get; set; }
 
-        public TaskDbContext(DbContextOptions<TaskDbContext> options) : base(options)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            string connectionString = "Server=localhost;Database=db1;Uid=username;Pwd=password;";
+
+            optionsBuilder.UseMySql(
+            connectionString,
+            new MySqlServerVersion(new Version(10, 0, 6)) // <-- use ServerVersion.FromString() with a "-mysql" suffix instead
+            );
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Configure table and column mappings, constraints, etc.
             modelBuilder.Entity<TaskItem>().ToTable("Tasks");
             modelBuilder.Entity<TaskItem>().HasKey(t => t.TaskId);
-            // Add any other configurations as needed
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

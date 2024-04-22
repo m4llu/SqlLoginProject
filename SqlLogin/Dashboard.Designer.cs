@@ -263,7 +263,7 @@
             flowLayoutPanel1.BackColor = Color.FromArgb(21, 21, 28);
             flowLayoutPanel1.Location = new Point(6, 134);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Padding = new Padding(10, 10, 10, 10);
+            flowLayoutPanel1.Padding = new Padding(10);
             flowLayoutPanel1.Size = new Size(1074, 514);
             flowLayoutPanel1.TabIndex = 1;
             flowLayoutPanel1.Paint += flowLayoutPanel1_Paint;
@@ -477,7 +477,7 @@
             panel4.Dock = DockStyle.Top;
             panel4.Location = new Point(200, 0);
             panel4.Name = "panel4";
-            panel4.Size = new Size(1162, 43);
+            panel4.Size = new Size(1226, 43);
             panel4.TabIndex = 22;
             panel4.MouseDown += panel4_MouseDown;
             panel4.MouseMove += panel4_MouseMove;
@@ -514,7 +514,7 @@
             panelRequirements.Dock = DockStyle.Top;
             panelRequirements.Location = new Point(200, 43);
             panelRequirements.Name = "panelRequirements";
-            panelRequirements.Size = new Size(1162, 657);
+            panelRequirements.Size = new Size(1226, 657);
             panelRequirements.TabIndex = 23;
             // 
             // label17

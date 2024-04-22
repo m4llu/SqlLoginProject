@@ -19,7 +19,7 @@ namespace SqlLogin
             string password = registerPasswordBox.Text.Trim();
             string email = emailBox.Text.Trim();
 
-            string querycheck = "SELECT COUNT(1) FROM Table_1 WHERE username=@Username";
+            string querycheck = "SELECT COUNT(1) FROM users WHERE username=@Username";
 
             // initialize database connection
             string connectionStringcheck = "Server=localhost;Database=db1;Trusted_Connection=True;TrustServerCertificate=True;";
@@ -40,7 +40,7 @@ namespace SqlLogin
                     }
                     else
                     {
-                        string query = "INSERT INTO Table_1 (username, password, email) VALUES (@Username, @Password, @Email)";
+                        string query = "INSERT INTO users (username, password, email) VALUES (@Username, @Password, @Email)";
 
                         string connectionString = "Server=localhost;Database=db1;Trusted_Connection=True;TrustServerCertificate=True;";
                         using (SqlConnection connection = new SqlConnection(connectionString))
@@ -78,7 +78,7 @@ namespace SqlLogin
             string username = loginUsernameBox.Text.Trim();
             string password = loginPasswordBox.Text.Trim();
 
-            string query = "SELECT COUNT(1) FROM Table_1 WHERE username=@Username AND password=@Password";
+            string query = "SELECT COUNT(1) FROM users WHERE username=@Username AND password=@Password";
 
             // initialize database connection
             string connectionString = "Server=localhost;Database=db1;Trusted_Connection=True;TrustServerCertificate=True;";
