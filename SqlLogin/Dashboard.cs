@@ -125,7 +125,6 @@ namespace SqlLogin
 
             previewPanel.Controls.Add(titleLabel);
             previewPanel.Controls.Add(contentLabel);
-            previewPanel.Controls.Add(button);
             previewPanel.BackColor = lockedColor;
             previewPanel.Width += 15;
 
@@ -137,7 +136,7 @@ namespace SqlLogin
 
             if (addToFlowLayoutPanel)
             {
-                   int taskHeight = Convert.ToInt32(height);
+                int taskHeight = Convert.ToInt32(height);
                 int taskWidth = Convert.ToInt32(width);
                 string taskTitle = taskTitleBox.Text;
                 string color = lockedColor.ToString();
@@ -186,7 +185,7 @@ namespace SqlLogin
                 // Clear existing controls from flowLayoutPanel1
                 flowLayoutPanel1.Controls.Clear();
                 // Get task details from UI
-             
+
                 // Create and add panels for each task
                 foreach (Task task in tasks)
                 {
@@ -617,6 +616,29 @@ namespace SqlLogin
         }
 
         private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Do you really want to exit?", "Dialog Title", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                Environment.Exit(0);
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void taskPreview_Paint(object sender, PaintEventArgs e)
         {
 
         }
