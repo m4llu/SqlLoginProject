@@ -83,9 +83,11 @@ namespace SqlLogin
             public int TaskWidth { get; set; }
             public int TaskHeight { get; set; }
             public string TaskTitle { get; set; }
+            public string TaskDescription { get; set; } // New property for task description
             public string Color { get; set; }
             public DateTime TaskDate { get; set; }
         }
+
         private void UpdateTaskPreview(bool addToFlowLayoutPanel)
         {
             string width = taskSizeInput.Text;
@@ -136,15 +138,17 @@ namespace SqlLogin
 
             if (addToFlowLayoutPanel)
             {
+                // Get task details from UI
                 int taskHeight = Convert.ToInt32(height);
                 int taskWidth = Convert.ToInt32(width);
                 string taskTitle = taskTitleBox.Text;
-                string color = lockedColor.ToString();
+                string taskDescription = taskContentBox.Text; // Get the task description
+                string color = ColorTranslator.ToHtml(lockedColor);
                 DateTime taskDate = dateTimePicker1.Value;
 
                 // SQL query to insert task details into the database
-                string query = "INSERT INTO tasks (task_height, task_width, task_title, color, task_date) " +
-                               "VALUES (@TaskHeight, @TaskWidth, @TaskTitle, @Color, @TaskDate)";
+                string query = "INSERT INTO tasks (task_height, task_width, task_title, task_description, color, task_date) " +
+                               "VALUES (@TaskHeight, @TaskWidth, @TaskTitle, @TaskDescription, @Color, @TaskDate)";
 
                 // Database connection string
                 string connectionString = "Server=localhost;Database=db1;Trusted_Connection=True;TrustServerCertificate=True;";
@@ -159,6 +163,7 @@ namespace SqlLogin
                         cmd.Parameters.AddWithValue("@TaskHeight", taskHeight);
                         cmd.Parameters.AddWithValue("@TaskWidth", taskWidth);
                         cmd.Parameters.AddWithValue("@TaskTitle", taskTitle);
+                        cmd.Parameters.AddWithValue("@TaskDescription", taskDescription); // Add the task description parameter
                         cmd.Parameters.AddWithValue("@Color", color);
                         cmd.Parameters.AddWithValue("@TaskDate", taskDate);
 
@@ -179,12 +184,12 @@ namespace SqlLogin
                         }
                     }
                 }
-                // Fetch tasks from the database
+
+                // Fetch tasks from the database and update the UI
                 List<Task> tasks = GetTasksFromDatabase();
 
                 // Clear existing controls from flowLayoutPanel1
                 flowLayoutPanel1.Controls.Clear();
-                // Get task details from UI
 
                 // Create and add panels for each task
                 foreach (Task task in tasks)
@@ -224,6 +229,7 @@ namespace SqlLogin
                                 TaskHeight = Convert.ToInt32(reader["task_height"]),
                                 TaskWidth = Convert.ToInt32(reader["task_width"]),
                                 TaskTitle = reader["task_title"].ToString(),
+                                TaskDescription = reader["task_description"].ToString(), // Get the task description
                                 Color = reader["color"].ToString(),
                                 TaskDate = Convert.ToDateTime(reader["task_date"])
                             };
@@ -237,12 +243,11 @@ namespace SqlLogin
             return tasks;
         }
 
+
         private Panel CreateTaskPanel(Task task)
         {
             Panel panel = new Panel();
             panel.Size = new Size(task.TaskWidth, task.TaskHeight);
-
-            // Use ColorTranslator to convert the color from the database
             panel.BackColor = ColorTranslator.FromHtml(task.Color);
 
             Label titleLabel = new Label();
@@ -253,12 +258,19 @@ namespace SqlLogin
             titleLabel.Size = new Size(panel.Width - 20, 30);
             titleLabel.Location = new Point(10, 10);
 
-            panel.Controls.Add(titleLabel);
+            Label descriptionLabel = new Label();
+            descriptionLabel.ForeColor = Color.White;
+            descriptionLabel.Text = task.TaskDescription;
+            descriptionLabel.AutoSize = false;
+            descriptionLabel.Size = new Size(panel.Width - 20, panel.Height - titleLabel.Height - 20);
+            descriptionLabel.Location = new Point(10, titleLabel.Bottom + 5);
 
-            // Add any additional controls like content label if needed
+            panel.Controls.Add(titleLabel);
+            panel.Controls.Add(descriptionLabel);
 
             return panel;
         }
+
 
 
         private void button7_Click(object sender, EventArgs e)
