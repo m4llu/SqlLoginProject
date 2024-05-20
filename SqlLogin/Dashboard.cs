@@ -14,6 +14,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using System.Drawing.Text;
 using RequirementManagementSystem;
 using Microsoft.Data.SqlClient;
+using static SqlLogin.Dashboard;
 
 namespace SqlLogin
 {
@@ -52,12 +53,6 @@ namespace SqlLogin
             AddExampleRequirements();
         }
 
-
-
-
-
-
-
         private void Dashboard_Load(object sender, EventArgs e)
         {
             this.Size = new Size(1299, 700);
@@ -65,7 +60,11 @@ namespace SqlLogin
             string filePath = Path.Combine(documentsFolder, projectName + ".kiverio");
 
             filePathTextBox.Text = filePath;
+
+            // Load tasks into flowLayoutPanel2
+            LoadTasksIntoFlowLayoutPanel();
         }
+
 
         Color lockedColor;
 
@@ -83,9 +82,14 @@ namespace SqlLogin
             public int TaskWidth { get; set; }
             public int TaskHeight { get; set; }
             public string TaskTitle { get; set; }
-            public string TaskDescription { get; set; } // New property for task description
+            public string TaskDescription { get; set; }
             public string Color { get; set; }
             public DateTime TaskDate { get; set; }
+            public string Priority { get; set; }       // New property
+            public string AssignedTo { get; set; }     // New property
+            public string Version { get; set; }        // New property
+            public string Type { get; set; }           // New property
+            public int ID { get; set; }                // New property
         }
 
         private void UpdateTaskPreview(bool addToFlowLayoutPanel)
@@ -147,8 +151,9 @@ namespace SqlLogin
                 DateTime taskDate = dateTimePicker1.Value;
 
                 // SQL query to insert task details into the database
-                string query = "INSERT INTO tasks (task_height, task_width, task_title, task_description, color, task_date) " +
-                               "VALUES (@TaskHeight, @TaskWidth, @TaskTitle, @TaskDescription, @Color, @TaskDate)";
+                string query = "INSERT INTO tasks (task_height, task_width, task_title, task_description, color, task_date, priority, assigned_to, version, type, id) " +
+               "VALUES (@TaskHeight, @TaskWidth, @TaskTitle, @TaskDescription, @Color, @TaskDate, @Priority, @AssignedTo, @Version, @Type, @ID)";
+
 
                 // Database connection string
                 string connectionString = "Server=localhost;Database=db1;Trusted_Connection=True;TrustServerCertificate=True;";
@@ -166,6 +171,12 @@ namespace SqlLogin
                         cmd.Parameters.AddWithValue("@TaskDescription", taskDescription); // Add the task description parameter
                         cmd.Parameters.AddWithValue("@Color", color);
                         cmd.Parameters.AddWithValue("@TaskDate", taskDate);
+                        cmd.Parameters.AddWithValue("@Priority", taskPriority);
+                        cmd.Parameters.AddWithValue("@AssignedTo", taskAssignedTo);
+                        cmd.Parameters.AddWithValue("@Version", taskVersion);
+                        cmd.Parameters.AddWithValue("@Type", taskType);
+                        cmd.Parameters.AddWithValue("@ID", taskID);
+
 
                         // Open database connection
                         connection.Open();
@@ -203,23 +214,14 @@ namespace SqlLogin
         private List<Task> GetTasksFromDatabase()
         {
             List<Task> tasks = new List<Task>();
-
-            // SQL query to select tasks from the database
             string query = "SELECT * FROM tasks";
-
-            // Database connection string
             string connectionString = "Server=localhost;Database=db1;Trusted_Connection=True;TrustServerCertificate=True;";
 
-            // Establish database connection
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                // Create SQL command
                 using (SqlCommand cmd = new SqlCommand(query, connection))
                 {
-                    // Open database connection
                     connection.Open();
-
-                    // Execute SQL command and read tasks from the database
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
@@ -229,11 +231,15 @@ namespace SqlLogin
                                 TaskHeight = Convert.ToInt32(reader["task_height"]),
                                 TaskWidth = Convert.ToInt32(reader["task_width"]),
                                 TaskTitle = reader["task_title"].ToString(),
-                                TaskDescription = reader["task_description"].ToString(), // Get the task description
+                                TaskDescription = reader["task_description"].ToString(),
                                 Color = reader["color"].ToString(),
-                                TaskDate = Convert.ToDateTime(reader["task_date"])
+                                TaskDate = Convert.ToDateTime(reader["task_date"]),
+                                Priority = reader["priority"].ToString(),
+                                AssignedTo = reader["assigned_to"].ToString(),
+                                Version = reader["version"].ToString(),
+                                Type = reader["type"].ToString(),
+                                ID = Convert.ToInt32(reader["id"])
                             };
-
                             tasks.Add(task);
                         }
                     }
@@ -241,6 +247,21 @@ namespace SqlLogin
             }
 
             return tasks;
+        }
+
+        private void LoadTasksIntoFlowLayoutPanel()
+        {
+            List<Task> tasks = GetTasksFromDatabase();
+
+            // Clear existing controls from flowLayoutPanel2
+            flowLayoutPanel2.Controls.Clear();
+
+            // Add panels for each task
+            foreach (Task task in tasks)
+            {
+                Panel panel = CreateTaskPanel(task);
+                flowLayoutPanel2.Controls.Add(panel);
+            }
         }
 
 
@@ -262,11 +283,43 @@ namespace SqlLogin
             descriptionLabel.ForeColor = Color.White;
             descriptionLabel.Text = task.TaskDescription;
             descriptionLabel.AutoSize = false;
-            descriptionLabel.Size = new Size(panel.Width - 20, panel.Height - titleLabel.Height - 20);
+            descriptionLabel.Size = new Size(panel.Width - 20, 30);
             descriptionLabel.Location = new Point(10, titleLabel.Bottom + 5);
+
+            Label priorityLabel = new Label();
+            priorityLabel.ForeColor = Color.White;
+            priorityLabel.Text = "Priority: " + task.Priority;
+            priorityLabel.AutoSize = false;
+            priorityLabel.Size = new Size(panel.Width - 20, 30);
+            priorityLabel.Location = new Point(10, descriptionLabel.Bottom + 5);
+
+            Label assignedToLabel = new Label();
+            assignedToLabel.ForeColor = Color.White;
+            assignedToLabel.Text = "Assigned To: " + task.AssignedTo;
+            assignedToLabel.AutoSize = false;
+            assignedToLabel.Size = new Size(panel.Width - 20, 30);
+            assignedToLabel.Location = new Point(10, priorityLabel.Bottom + 5);
+
+            Label versionLabel = new Label();
+            versionLabel.ForeColor = Color.White;
+            versionLabel.Text = "Version: " + task.Version;
+            versionLabel.AutoSize = false;
+            versionLabel.Size = new Size(panel.Width - 20, 30);
+            versionLabel.Location = new Point(10, assignedToLabel.Bottom + 5);
+
+            Label typeLabel = new Label();
+            typeLabel.ForeColor = Color.White;
+            typeLabel.Text = "Type: " + task.Type;
+            typeLabel.AutoSize = false;
+            typeLabel.Size = new Size(panel.Width - 20, 30);
+            typeLabel.Location = new Point(10, versionLabel.Bottom + 5);
 
             panel.Controls.Add(titleLabel);
             panel.Controls.Add(descriptionLabel);
+            panel.Controls.Add(priorityLabel);
+            panel.Controls.Add(assignedToLabel);
+            panel.Controls.Add(versionLabel);
+            panel.Controls.Add(typeLabel);
 
             return panel;
         }
