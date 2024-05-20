@@ -266,7 +266,7 @@
             button7.FlatAppearance.MouseDownBackColor = Color.Turquoise;
             button7.FlatStyle = FlatStyle.Flat;
             button7.ForeColor = SystemColors.ButtonHighlight;
-            button7.Location = new Point(330, 245);
+            button7.Location = new Point(330, 255);
             button7.Margin = new Padding(3, 4, 3, 4);
             button7.Name = "button7";
             button7.Size = new Size(297, 45);

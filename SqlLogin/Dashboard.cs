@@ -241,7 +241,9 @@ namespace SqlLogin
         {
             Panel panel = new Panel();
             panel.Size = new Size(task.TaskWidth, task.TaskHeight);
-            panel.BackColor = Color.FromName(task.Color);
+
+            // Use ColorTranslator to convert the color from the database
+            panel.BackColor = ColorTranslator.FromHtml(task.Color);
 
             Label titleLabel = new Label();
             titleLabel.ForeColor = Color.White;
@@ -251,10 +253,9 @@ namespace SqlLogin
             titleLabel.Size = new Size(panel.Width - 20, 30);
             titleLabel.Location = new Point(10, 10);
 
-            // Add other controls like content label, button, etc. as needed
-
             panel.Controls.Add(titleLabel);
-            // Add other controls to the panel
+
+            // Add any additional controls like content label if needed
 
             return panel;
         }
